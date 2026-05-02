@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export default function Projects() {
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+
   const items = [
     {
       title: "MOCA",
@@ -65,10 +69,17 @@ export default function Projects() {
         {items.map((item, idx) => (
           <div
             key={idx}
+            onMouseEnter={() => setHoverIndex(idx)}
+            onMouseLeave={() => setHoverIndex(null)}
             style={{
               marginBottom: "20px",
               paddingLeft: "12px",
               borderLeft: "2px solid #eee",
+              padding: "12px",
+              transition: "background-color 0.2s ease",
+              backgroundColor:
+                hoverIndex === idx ? "#FFF6F5" : "transparent",
+              borderRadius: "0px",
             }}
           >
             <div style={{ fontSize: "13px", color: "#888" }}>
