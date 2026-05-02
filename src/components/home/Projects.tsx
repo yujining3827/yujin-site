@@ -30,13 +30,13 @@ export default function Projects() {
       date: "2025.03 한달간",
     },
     {
-      title: "중앙운영단",
+      title: "멋쟁이사자처럼 중앙운영단",
       desc: "멋쟁이사자처럼",
       date: "2024.01 ~ 2025.12",
     },
     {
-      title: "백엔드 운영진",
-      desc: "멋쟁이사자처럼 서울여자대학교",
+      title: "멋쟁이사자처럼 서울여자대학교 백엔드 운영진",
+      desc: "멋쟁이사자처럼",
       date: "2024.12 ~ 2025.12",
     },
     {
@@ -73,7 +73,7 @@ export default function Projects() {
             onMouseLeave={() => setHoverIndex(null)}
             style={{
               marginBottom: "20px",
-              paddingLeft: "12px",
+              paddingLeft: "20px",
               borderLeft: "2px solid #eee",
               padding: "12px",
               transition: "background-color 0.2s ease",
