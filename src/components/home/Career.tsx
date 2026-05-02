@@ -1,6 +1,6 @@
 export default function Career() {
     return (
-      <div style={{ padding: "40px" }}>
+      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px", }}>
         <h2>Career</h2>
         <ul>
           <li>멋쟁이사자처럼 13기 중앙운영단</li>

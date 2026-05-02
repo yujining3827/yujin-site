@@ -13,7 +13,7 @@ export default function BlogDetail() {
   if (!post) return <div>글 없음</div>;
 
   return (
-    <div style={{ padding: "40px 80px" }}>
+    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px",  }}>
         <Navbar />
         <hr />
         <br />
