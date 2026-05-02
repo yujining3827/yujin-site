@@ -19,7 +19,7 @@ export default function Navbar() {
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         {/* 프로필 이미지 */}
         <img
-          src="/public/profile.png"
+          src="/profile.png"
           alt="profile"
           style={{
             width: "32px",

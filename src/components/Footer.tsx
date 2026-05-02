@@ -24,7 +24,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           style={linkStyle}
         >
-          <img src="/public/github.svg" style={iconStyle} />
+          <img src="/github.svg" style={iconStyle} />
           GitHub
         </a>
 
@@ -34,7 +34,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           style={linkStyle}
         >
-          <img src="/public/velog.png" style={iconStyle} />
+          <img src="/velog.png" style={iconStyle} />
           Velog
         </a>
 
@@ -44,7 +44,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           style={linkStyle}
         >
-          <img src="/public/instagram.svg" style={iconStyle} />
+          <img src="/instagram.svg" style={iconStyle} />
           Instagram
         </a>
 
