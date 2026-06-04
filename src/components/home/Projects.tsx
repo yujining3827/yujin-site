@@ -1,101 +1,174 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Projects() {
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
-
-  const items = [
+const projects = [
     {
+      slug: "moca",
       title: "MOCA",
-      desc: "멋쟁이사자처럼 중앙해커톤 2차 진출",
-      date: "2025.07.21 ~ 2025.08.26",
+      image: "/moca.png",
+      tags: ["Backend", "Spring Boot", "Hackathon"],
+      description:
+        "소상공인을 위한 경영 컨설턴트 Agent 서비스",
     },
     {
-      title: "GURU2 Android",
-      desc: "서울여자대학교 SW 사관학교 수료 - 팀 우수상",
-      date: "2025.07 한달간",
+      slug: "today-market",
+      title: "오늘 시장은",
+      image: "/todaymarket.png",
+      tags: ["PM", "Backend", "Data"],
+      description:
+        "경제 초보자를 위한 시장 흐름 해석 플랫폼",
     },
     {
-      title: "축제 사이트",
-      desc: "서울여자대학교 2025년도 축제 사이트 제작",
-      date: "2025.05 한달간",
+      slug: "donworry",
+      title: "돈워리",
+      image: "/donworry.png",
+      tags: ["PM", "Frontend", "React"],
+      description:
+        "대학생 금융 교육 서비스",
     },
     {
-      title: "Curio",
-      desc: "프로젝트종합설계",
-      date: "2025.03 ~ 2025.06",
-    },
-    {
-      title: "i-gacha",
-      desc: "멋쟁이사자처럼 운영진 사이드 프로젝트",
-      date: "2025.03 한달간",
-    },
-    {
-      title: "멋쟁이사자처럼 중앙운영단",
-      desc: "멋쟁이사자처럼",
-      date: "2024.01 ~ 2025.12",
-    },
-    {
-      title: "멋쟁이사자처럼 서울여자대학교 백엔드 운영진",
-      desc: "멋쟁이사자처럼",
-      date: "2024.12 ~ 2025.12",
-    },
-    {
-      title: "STACKPOT",
-      desc: "UMC 7기 프로젝트",
-      date: "2023.12 ~ 2025.02",
-    },
-    {
-      title: "GURU1",
-      desc: "Python/HTML 수료 - 개인상 수상",
-      date: "2025.01 한달간",
-    },
-    {
-      title: "UMC Study",
-      desc: "Plan 파트 스터디",
-      date: "2024.09 ~ 2024.12",
-    },
-    {
-      title: "유락 인턴",
-      desc: "정보보안 기업 인턴",
-      date: "2024.09 ~ 2024.12",
+      slug: "ddadang",
+      title: "DDADANG",
+      image: "/ddadang.png",
+      tags: ["Backend", "Healthcare"],
+      description:
+        "혈당관리 지속화를 위한 플랫폼",
     },
   ];
 
-  return (
-    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px", }}>
-      <h2 style={{ marginBottom: "30px" }}>Timeline</h2>
-
-      <div>
-        {items.map((item, idx) => (
-          <div
-            key={idx}
-            onMouseEnter={() => setHoverIndex(idx)}
-            onMouseLeave={() => setHoverIndex(null)}
-            style={{
-              marginBottom: "20px",
-              paddingLeft: "20px",
-              borderLeft: "2px solid #eee",
-              padding: "12px",
-              transition: "background-color 0.2s ease",
-              backgroundColor:
-                hoverIndex === idx ? "#FFF6F5" : "transparent",
-              borderRadius: "0px",
-            }}
-          >
-            <div style={{ fontSize: "13px", color: "#888" }}>
-              {item.date}
+  export default function Projects() {
+    const navigate = useNavigate();
+  
+    return (
+      <section style={{ marginTop: "100px" }}>
+        <h2
+          style={{
+            fontSize: "2rem",
+            marginBottom: "16px",
+          }}
+        >
+          Featured Projects
+        </h2>
+  
+        <p
+          style={{
+            color: "#666",
+            marginBottom: "40px",
+          }}
+        >
+          사용자 문제를 해결하기 위해 참여했던 주요 프로젝트입니다.
+        </p>
+  
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "24px",
+          }}
+        >
+          {projects.map((project) => (
+            <div
+              key={project.title}
+              onClick={() => navigate(`/projects/${project.slug}`)}
+              style={{
+                border: "1px solid #eee",
+                borderRadius: "16px",
+                overflow: "hidden",
+                background: "#fff",
+                cursor: "pointer",
+  
+                transition:
+                  "transform 0.25s ease, box-shadow 0.25s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-6px)";
+                e.currentTarget.style.boxShadow =
+                  "0 20px 40px rgba(0,0,0,0.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <div
+                style={{
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  style={{
+                    width: "100%",
+                    height: "220px",
+                    objectFit: "cover",
+                    transition: "transform 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.03)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                />
+              </div>
+  
+              <div style={{ padding: "20px" }}>
+                <h3
+                  style={{
+                    marginBottom: "12px",
+                    fontSize: "1.8rem",
+                  }}
+                >
+                  {project.title}
+                </h3>
+  
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "8px",
+                    marginBottom: "16px",
+                  }}
+                >
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        fontSize: "12px",
+                        padding: "6px 12px",
+                        borderRadius: "999px",
+                        background: "#f5f5f5",
+                        color: "#666",
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+  
+                <p
+                  style={{
+                    color: "#666",
+                    lineHeight: 1.6,
+                    marginBottom: "16px",
+                  }}
+                >
+                  {project.description}
+                </p>
+  
+                <div
+                  style={{
+                    color: "#888",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                  }}
+                >
+                  View Project →
+                </div>
+              </div>
             </div>
-
-            <div style={{ fontWeight: 600, marginTop: "4px" }}>
-              {item.title}
-            </div>
-
-            <div style={{ fontSize: "14px", color: "#555" }}>
-              {item.desc}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+          ))}
+        </div>
+      </section>
+    );
+  }

@@ -18,7 +18,7 @@ export default function About() {
   return (
     <div
       style={{
-        maxWidth: "900px",
+        // maxWidth: "900px",
         margin: "0 auto",
         padding: "40px",
       }}

@@ -1,6 +1,7 @@
 import About from "../components/home/About";
-import Projects from "../components/home/Projects";
-// import Career from "../components/home/Career";
+import Projects from "../components/home/Projects"
+// import Timeline from "../components/home/Timeline";
+import Experience from "../components/home/Experience";
 import TechStacks from "../components/home/TechStack";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -13,6 +14,7 @@ export default function Home() {
                 <Navbar />
                 <hr />
                 <About />
+                <Experience />
                 <Projects />
                 <TechStacks />
                 <hr style={{ margin: "40px 0" }} />
