@@ -1,44 +1,197 @@
 export default function About() {
+
+  const linkStyle = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
+    textDecoration: "none",
+    color: "#000",
+    fontSize: "13px",
+    marginRight: "12px",
+  };
+
+  const iconStyle = {
+    width: "16px",
+    height: "16px",
+  };
+
   return (
-    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px", }}>
-      <h2 style={{ marginBottom: "30px" }}>About Me</h2>
+    <div
+      style={{
+        maxWidth: "900px",
+        margin: "0 auto",
+        padding: "40px",
+      }}
+    >
+      <h2 style={{ marginBottom: "32px" }}>About Me</h2>
+
+      {/* Intro */}
+      <section style={{ marginBottom: "36px" }}>
+        <h1
+          style={{
+            fontSize: "2.2rem",
+            fontWeight: 700,
+            lineHeight: 1.3,
+            marginBottom: "12px",
+          }}
+        >
+          사용자의 문제를 해결하는   <br />
+          백엔드 개발자 정유진입니다.
+        </h1>
+
+        <p
+          style={{
+            fontSize: "1.6rem",
+            fontWeight: 500,
+            color: "#666",
+            marginBottom: "32px",
+          }}
+        >
+          기획부터 개발까지 하나의 흐름으로 이해하고 구현하는 것을 좋아합니다.
+        </p>
+      </section>
 
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
+          gap: "28px",
+          marginBottom: "48px",
+          fontSize: "18px",
+          lineHeight: 1.4,
+          maxWidth: "700px",
+        }}
+      >
+      <p style={{ margin: 0 }}>
+        프로젝트에서 PM과 백엔드 개발을 맡으며 <br />
+        사용자의 문제를 정의하고 해결하는 과정을 경험했습니다.
+      </p>
+
+      <p style={{ margin: 0 }}>
+        단순히 기능을 구현하는 것을 넘어, <br />
+        왜 이 기능이 필요한지 고민하며 서비스를 만들어갑니다.
+      </p>
+    </div>
+
+      {/* Profile */}
+      <section
+        style={{
+          display: "flex",
+          gap: "48px",
           alignItems: "flex-start",
-          gap: "40px",
+          justifyContent: "center",
         }}
       >
         <img
-          src="/profile2.png"
+          src="/image.png"
           alt="profile"
           style={{
-            width: "160px",
-            height: "240px",
+            width: "340px",
+            height: "340px",
             objectFit: "cover",
-            borderRadius: "0px",
           }}
         />
 
         <div style={{ flex: 1 }}>
-          <p style={{ marginBottom: "16px", lineHeight: "1.6" }}>
-            안녕하세요! 저는 서울여자대학교 소프트웨어융합학과에서 개발 경험을 함께 쌓아가며,
-            문제를 정의하는 데서 출발해, 기획과 개발을 하나의 흐름으로 이어 나가고자 하는 대학생입니다.
-          </p>
 
-          <p style={{ marginBottom: "16px", lineHeight: "1.6" }}>
-            프로젝트를 참여하고 주도하며, 기획–PM–백엔드 개발까지 폭넓은 역할을 경험했습니다.
-            AI를 활용한 생산성/교육 도구에 관심이 많으며, 사용자에게 진짜 필요한 도구를 만드는 데 집중하고자 합니다.
-          </p>
+          {/* Keywords */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "24px",
+              marginBottom: "36px",
+              fontSize: "18px",
+            }}
+          >
+            <p style={{ margin: 0 }}>
+              현재는 AI와 생산성·교육 도메인에 관심을 가지고 있으며,<br />
+              사용자에게 실제로 도움이 되는 제품을 만드는 데 <br />
+              집중하고 있습니다.
+            </p>
+          </div>
 
-          <p style={{ lineHeight: "1.6" }}>
-            저는 단순히 기술을 익히는 것을 넘어,
-            팀워크와 소통을 중시하며 프로젝트를 성공으로 이끄는 과정에 집중합니다.
-            앞으로도 다양한 도전을 통해 개발자로서 성장하며, 의미 있는 가치를 창출하는 데 기여하고 싶습니다.
-          </p>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              marginBottom: "28px",
+              fontSize: "20px",
+              fontWeight: 600,
+              color: "#222",
+            }}
+          >
+            <span>👩‍💻 PM & Backend Development</span>
+            <span>🤖 AI · Education Technology</span>
+            <span>🚀 Product Thinking</span>
+          </div>
+
+          {/* Info */}
+          <div
+            style={{
+              paddingTop: "16px",
+            }}
+          >
+            <p
+              style={{
+                margin: "0 0 8px 0",
+                color: "#555",
+              }}
+            >
+              🎓 서울여자대학교 소프트웨어융합학과
+            </p>
+
+            <p
+              style={{
+                margin: "0 0 10px 0",
+                color: "#555",
+              }}
+            >
+              📧 j_yujin_swu22@naver.com
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                flexWrap: "wrap",
+              }}
+            >
+              <a
+                href="https://github.com/yujining3827"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={linkStyle}
+              >
+                <img src="/github.svg" style={iconStyle} />
+                GitHub
+              </a>
+
+              <a
+                href="https://velog.io/@yujindeang_/posts"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={linkStyle}
+              >
+                <img src="/velog.png" style={iconStyle} />
+                Velog
+              </a>
+
+              <a
+                href="https://www.instagram.com/yujindeang_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={linkStyle}
+              >
+                <img src="/instagram.svg" style={iconStyle} />
+                Instagram
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
