@@ -59,18 +59,16 @@ export default function About() {
           marginBottom: "48px",
           fontSize: "18px",
           lineHeight: 1.4,
-          maxWidth: "700px",
+          maxWidth: "800px",
         }}
       >
       <p style={{ margin: 0 }}>
-        프로젝트에서 PM과 백엔드 개발을 맡으며 <br />
-        사용자의 문제를 정의하고 해결하는 과정을 경험했습니다.
-      </p>
-
-      <p style={{ margin: 0 }}>
-        단순히 기능을 구현하는 것을 넘어, <br />
+        프로젝트에서 PM과 백엔드 개발을 맡으며 
+        사용자의 문제를 정의하고 해결하는 과정을 경험했습니다. <br />
+        단순히 기능을 구현하는 것을 넘어,
         왜 이 기능이 필요한지 고민하며 서비스를 만들어갑니다.
       </p>
+      
     </div>
 
       {/* Profile */}
