@@ -7,7 +7,6 @@ export default function TechStacks() {
       skills: [
         "객체지향 프로그래밍",
         "컬렉션 프레임워크 활용",
-        "백준 및 프로젝트 경험",
       ],
     },
 
@@ -22,7 +21,7 @@ export default function TechStacks() {
     },
 
     "🐬 MySQL": {
-      projects: ["MOCA", "오늘 시장은"],
+      projects: ["MOCA", "오늘 시장은", "DDADANG"],
       skills: [
         "ERD 설계",
         "정규화",
@@ -35,12 +34,11 @@ export default function TechStacks() {
       skills: [
         "컴포넌트 기반 개발",
         "상태 관리",
-        "반응형 UI 구현",
       ],
     },
 
     "🔷 TypeScript": {
-      projects: ["돈워리", "개인 포트폴리오"],
+      projects: ["돈워리"],
       skills: [
         "타입 기반 개발",
         "React와 함께 사용",
@@ -48,7 +46,7 @@ export default function TechStacks() {
     },
 
     "🐍 Python": {
-      projects: ["GURU1", "개인 프로젝트"],
+      projects: ["GURU1", "MOCA"],
       skills: [
         "기초 알고리즘",
         "데이터 처리",
@@ -56,7 +54,7 @@ export default function TechStacks() {
     },
 
     "☁️ AWS": {
-      projects: ["MOCA", "오늘 시장은"],
+      projects: ["DDADANG", "오늘 시장은"],
       skills: [
         "EC2 배포 경험",
         "서버 운영 경험",

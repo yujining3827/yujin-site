@@ -74,7 +74,7 @@ export default function About() {
         }}
       >
         <img
-          src="/image.png"
+          src="/mainImage.png"
           alt="profile"
           style={{
             width: "340px",
@@ -171,7 +171,7 @@ export default function About() {
               </a>
 
               <a
-                href="https://www.instagram.com/yujindeang_/"
+                href="https://www.instagram.com/dev.ing_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={linkStyle}

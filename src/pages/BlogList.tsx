@@ -20,7 +20,7 @@ export default function BlogList() {
         marginTop: posts.length === 0 ? "140px" : "30px",}}
       >
         {posts.length === 0 ? (
-          <li style={{ color: "#888",textAlign: "center" }}>등록된 글이 없습니다.</li>
+          <li style={{ color: "#888",textAlign: "center" }}>업데이트 될 예정입니다.</li>
         ) : (
           posts.map((post) => {
             const isNew =

@@ -2,7 +2,7 @@ export default function Experience() {
     const timeline = {
       "2026": [
         "오늘 시장은 | 개인프로젝트",
-        "(미정) | UMC 10기 프로젝트",
+        // "(미정) | UMC 10기 프로젝트",
         "따당 | 메디컬 창업동아리 프로젝트",
         "덴트루스 | 메디컬 창업동아리 프로젝트",
         "돈워리 | SWUWEB 프로젝트",
@@ -132,9 +132,30 @@ export default function Experience() {
                   fontSize: "14px",
                 }}
               >
-                2024.01 - 2025.12
+                2025.01 - 2025.12
               </p>
             </div>
+
+            <div>
+              <p
+                style={{
+                  margin: 0,
+                  fontWeight: 600,
+                }}
+              >
+                (주)유락 전략사업본부 인턴
+              </p>
+              <p
+                style={{
+                  margin: "4px 0 0",
+                  color: "#777",
+                  fontSize: "14px",
+                }}
+              >
+                2024.09 - 2024.12
+              </p>
+            </div>
+
           </div>
         </div>
       </section>

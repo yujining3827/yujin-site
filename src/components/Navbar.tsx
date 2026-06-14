@@ -51,7 +51,7 @@ export default function Navbar() {
       {/* 오른쪽 (메뉴) */}
       <nav>
         <Link
-          to={isAbout ? "/" : "/about"}
+          to={isAbout ? "/" : "/blog"}
           style={{
             marginRight: "16px",
             textDecoration: "none",
@@ -60,7 +60,7 @@ export default function Navbar() {
             fontWeight: 600,
           }}
         >
-          {isAbout ? "Article" : "About me"}
+          {isAbout ? "About me" : "Article"}
         </Link>
 
         {isAdmin ? (
