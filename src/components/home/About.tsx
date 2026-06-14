@@ -16,14 +16,7 @@ export default function About() {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "900px",
-        margin: "0 auto",
-        padding: "40px",
-      }}
-    >
-      <h2 style={{ marginBottom: "32px" }}>About Me</h2>
+    <div>
 
       {/* Intro */}
       <section style={{ marginBottom: "36px" }}>

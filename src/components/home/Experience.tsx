@@ -26,8 +26,7 @@ export default function Experience() {
         <h2
           style={{
             fontSize: "2rem",
-            fontWeight: 700,
-            marginBottom: "40px",
+            marginBottom: "16px",
           }}
         >
           Experience
