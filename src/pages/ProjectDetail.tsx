@@ -1,6 +1,21 @@
 import { useParams } from "react-router-dom";
 
-const projectData = {
+
+type Project = {
+  title: string;
+  image: string;
+  period: string;
+  role: string;
+  description: string;
+  tech: string[];
+  contribution: string[];
+  result: string[];
+  github: string;
+  demo: string;
+};
+
+
+const projectData: Record<string, Project> = {
   moca: {
     title: "MOCA",
     image: "/moca.png",
@@ -115,13 +130,13 @@ const projectData = {
 };
 
 export default function ProjectDetail() {
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
 
-  const project = projectData[slug];
-
-  if (!project) {
+  if (!slug) {
     return <div>Project Not Found</div>;
   }
+
+  const project = projectData[slug as keyof typeof projectData];
 
   return (
     <div
