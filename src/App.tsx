@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Admin from "./pages/Admin";
+import BlogDetail from "./pages/BlogDetail";
 import BlogList from "./pages/BlogList";
+import Guestbook from "./pages/Guestbook";
 import Home from "./pages/Home";
 import ProjectDetail from "./pages/ProjectDetail";
-import BlogDetail from "./pages/BlogDetail";
-import WritePage from "./pages/WritePage";
-import Admin from "./pages/AdminPage";
 
 import PortfolioLayout from "./components/PortfolioLayout";
 
@@ -16,12 +16,11 @@ export default function App() {
         <Route element={<PortfolioLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/post/:slug" element={<BlogDetail />} />
+          <Route path="/guestbook" element={<Guestbook />} />
+          <Route path="/admin" element={<Admin />} />
         </Route>
-
-        <Route path="/blog" element={<BlogList />} />
-        <Route path="/post/:id" element={<BlogDetail />} />
-        <Route path="/write" element={<WritePage />} />
-        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

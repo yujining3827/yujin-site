@@ -1,163 +1,73 @@
+import Endpoint from "../Endpoint";
+import { ACTIVITY_LOG, FEATURED_CAREER as career } from "../../content/profile";
+import styles from "./Experience.module.css";
+
 export default function Experience() {
-    const timeline = {
-      "2026": [
-        "오늘 시장은 | 개인프로젝트",
-        // "(미정) | UMC 10기 프로젝트",
-        "따당 | 메디컬 창업동아리 프로젝트",
-        "덴트루스 | 메디컬 창업동아리 프로젝트",
-        "돈워리 | SWUWEB 프로젝트",
-      ],
-      "2025": [
-        "MOCA | 멋쟁이사자처럼 중앙해커톤 상위 3% 2차 진출",
-        "GURU2 Android | 팀 우수상 수상",
-        "축제 사이트 | 서울여자대학교 운영진 프로젝트",
-        "Curio | 프로젝트종합설계1",
-        "GURU1 Python/HTML | 개인상 수상",
-      ],
-      "2024": [
-        "STACKPOT | PM",
-        // "(주)유락 | Backend Intern",
-        "UMC Plan 파트 스터디",
-      ],
-    };
-  
-    return (
-      <section style={{ marginTop: "80px", marginBottom: "80px" }}>
-        <h2
-          style={{
-            fontSize: "2rem",
-            marginBottom: "16px",
-          }}
-        >
-          Experience
-        </h2>
-  
-        {/* Timeline */}
-        <div style={{ marginBottom: "60px" }}>
-          <h3
-            style={{
-              fontSize: "1.3rem",
-              marginBottom: "24px",
-            }}
-          >
-            Timeline
-          </h3>
-  
-          {Object.entries(timeline).map(([year, items]) => (
-            <div
-              key={year}
-              style={{
-                display: "flex",
-                marginBottom: "28px",
-              }}
-            >
-              <div
-                style={{
-                  width: "80px",
-                  fontWeight: 700,
-                  color: "#222",
-                  flexShrink: 0,
-                }}
-              >
-                {year}
-              </div>
-  
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                  color: "#555",
-                }}
-              >
-                {items.map((item) => (
-                  <span key={item}>{item}</span>
-                ))}
-              </div>
+  return (
+    <section id="experience" className={styles.section}>
+      <Endpoint
+        path="/experience"
+        title="문제를 발견하고, 고치고, 숫자로 확인했습니다"
+        description="가장 최근의 인턴십에서는 기획·데이터·백엔드를 오가며 가입 퍼널을 직접 개선했습니다."
+      />
+
+      <article className={styles.career}>
+        <div className={styles.careerHead}>
+          <div>
+            <p className={styles.company}>
+              {career.company}
+              <span className={styles.team}> · {career.team}</span>
+            </p>
+            <p className={styles.role}>{career.role}</p>
+          </div>
+          <p className={styles.period}>{career.period}</p>
+        </div>
+
+        <p className={styles.summary}>{career.summary}</p>
+
+        <dl className={styles.metrics}>
+          {career.metrics.map((metric) => (
+            <div key={metric.label} className={styles.metric}>
+              <dt className={styles.metricLabel}>{metric.label}</dt>
+              <dd className={styles.metricValue}>{metric.value}</dd>
+              <dd className={styles.metricDetail}>{metric.detail}</dd>
             </div>
           ))}
-        </div>
-  
-        {/* Leadership */}
-        <div>
-          <h3
-            style={{
-              fontSize: "1.3rem",
-              marginBottom: "24px",
-            }}
-          >
-            Leadership
-          </h3>
-  
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-            }}
-          >
-            <div>
-              <p
-                style={{
-                  margin: 0,
-                  fontWeight: 600,
-                }}
-              >
-                멋쟁이사자처럼 서울여자대학교 백엔드 운영진
-              </p>
-              <p
-                style={{
-                  margin: "4px 0 0",
-                  color: "#777",
-                  fontSize: "14px",
-                }}
-              >
-                2024.12 - 2025.12
-              </p>
-            </div>
-  
-            <div>
-              <p
-                style={{
-                  margin: 0,
-                  fontWeight: 600,
-                }}
-              >
-                멋쟁이사자처럼 중앙운영단
-              </p>
-              <p
-                style={{
-                  margin: "4px 0 0",
-                  color: "#777",
-                  fontSize: "14px",
-                }}
-              >
-                2025.01 - 2025.12
-              </p>
-            </div>
+        </dl>
 
-            <div>
-              <p
-                style={{
-                  margin: 0,
-                  fontWeight: 600,
-                }}
-              >
-                (주)유락 전략사업본부 인턴
-              </p>
-              <p
-                style={{
-                  margin: "4px 0 0",
-                  color: "#777",
-                  fontSize: "14px",
-                }}
-              >
-                2024.09 - 2024.12
-              </p>
-            </div>
+        <ul className={styles.highlights}>
+          {career.highlights.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
 
-          </div>
+        <div className={styles.tags}>
+          {career.tech.map((tech) => (
+            <span key={tech} className={styles.tag}>
+              {tech}
+            </span>
+          ))}
         </div>
-      </section>
-    );
-  }
+      </article>
+
+      <div className={styles.log}>
+        <p className={styles.logTitle}>
+          <span className={styles.logMethod}>GET</span> /experience/activities
+        </p>
+        <ol className={styles.logList}>
+          {ACTIVITY_LOG.map((entry) => (
+            <li key={entry.title + entry.period} className={styles.logItem}>
+              <span className={styles.logPeriod}>{entry.period}</span>
+              <div>
+                <p className={styles.logHeading}>
+                  {entry.title} <span className={styles.logRole}>{entry.role}</span>
+                </p>
+                {entry.note && <p className={styles.logNote}>{entry.note}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}

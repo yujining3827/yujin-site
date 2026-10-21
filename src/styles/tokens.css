@@ -1,0 +1,86 @@
+/*
+ * Concept: "API docs as a portfolio"
+ * 섹션은 엔드포인트, 소개는 응답(Response)처럼 읽히도록 한다.
+ * 바탕은 흰/검 중립색, 포인트만 GET = violet, POST = pink.
+ */
+:root {
+  --bg: #ffffff;
+  --bg-elevated: #f3f3f5;
+  --surface: #ffffff;
+  --text: #3a3a40;
+  --text-muted: #8a8a93;
+  --text-heading: #0d0d10;
+  --border: #ebebee;
+  --border-strong: #d0d0d6;
+
+  --accent: #6c4bff;
+  --accent-soft: rgba(108, 75, 255, 0.14);
+  --accent-border: rgba(108, 75, 255, 0.4);
+  --post: #ff4f9e;
+  --post-soft: rgba(255, 79, 158, 0.16);
+  --danger: #d6283a;
+
+  --term-bg: #0d0d10;
+  --term-border: #26262c;
+  --term-text: #e2e2e6;
+  --term-muted: #7c7c86;
+  --term-accent: #b3a1ff;
+  --term-heading: #fafafa;
+  /* 실제 터미널(zsh + jq) 색: ANSI 팔레트 기반 */
+  --term-chrome: #2a2a2e;
+  --term-red: #ff5f57;
+  --term-yellow: #febc2e;
+  --term-green: #28c840;
+  --term-ansi-green: #8ae234;
+  --term-ansi-blue: #6cb6ff;
+  --term-ansi-cyan: #56d4dd;
+  --term-key: #6cb6ff;
+  --term-string: #8ae234;
+  --term-number: #e5c07b;
+  --term-shadow: rgba(0, 0, 0, 0.25);
+
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", sans-serif;
+  --font-serif: var(--font-sans);
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas,
+    monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 80px;
+  --space-9: 120px;
+
+  --radius: 6px;
+  --radius-lg: 12px;
+  --container: 1000px;
+  --reading: 720px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0b;
+    --bg-elevated: #19191c;
+    --surface: #111113;
+    --text: #b8b8c0;
+    --text-muted: #75757e;
+    --text-heading: #fafafa;
+    --border: #232327;
+    --border-strong: #3a3a40;
+
+    --accent: #a18cff;
+    --accent-soft: rgba(161, 140, 255, 0.18);
+    --accent-border: rgba(161, 140, 255, 0.45);
+    --post: #ff7ab6;
+    --post-soft: rgba(255, 122, 182, 0.18);
+    --danger: #ff8a95;
+
+    --term-bg: #000000;
+    --term-border: #26262c;
+    --term-shadow: rgba(0, 0, 0, 0.6);
+  }
+}

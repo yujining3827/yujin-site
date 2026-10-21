@@ -1,188 +1,123 @@
+import type { CSSProperties } from "react";
+import { Link } from "react-router-dom";
+
+import { PROFILE } from "../../content/profile";
+import styles from "./About.module.css";
+
+type Value = string | number | string[];
+
+const RESPONSE: [string, Value][] = [
+  ["name", PROFILE.name],
+  ["role", PROFILE.roles],
+  ["stack", ["Java", "Spring Boot", "JPA", "MySQL"]],
+  ["approach", "문제 정의 → API 구현 → 지표 확인"],
+  ["recent_impact", "가입 CAC −45% @FYI"],
+  ["award", "ACK 2026 정총연합회 회장상"],
+];
+
+function renderValue(value: Value) {
+  if (Array.isArray(value)) {
+    return (
+      <>
+        [
+        {value.map((item, index) => (
+          <span key={item}>
+            <span className={styles.string}>"{item}"</span>
+            {index < value.length - 1 && ", "}
+          </span>
+        ))}
+        ]
+      </>
+    );
+  }
+  if (typeof value === "number") {
+    return <span className={styles.number}>{value}</span>;
+  }
+  return <span className={styles.string}>"{value}"</span>;
+}
+
+function Prompt() {
+  return (
+    <>
+      <span className={styles.user}>yujin@dev-ing</span>{" "}
+      <span className={styles.cwd}>~</span> %
+    </>
+  );
+}
+
 export default function About() {
-
-  const linkStyle = {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "6px",
-    textDecoration: "none",
-    color: "#000",
-    fontSize: "13px",
-    marginRight: "12px",
-  };
-
-  const iconStyle = {
-    width: "16px",
-    height: "16px",
-  };
+  // 터미널 줄이 위에서부터 순서대로 찍히도록 줄마다 지연을 준다
+  let line = 0;
+  const next = () => ({ "--line": line++ }) as CSSProperties;
 
   return (
-    <div>
-
-      {/* Intro */}
-      <section style={{ marginBottom: "36px" }}>
-        <h1
-          style={{
-            fontSize: "2.2rem",
-            fontWeight: 700,
-            lineHeight: 1.3,
-            marginBottom: "12px",
-          }}
-        >
-          사용자의 문제를 해결하는   <br />
+    <section className={styles.hero}>
+      <div className={styles.copy}>
+        <p className={styles.eyebrow}>
+          <span className={styles.dot} /> Backend Developer · AI Product
+        </p>
+        <h1 className={styles.title}>
+          문제를 <span className={styles.mark}>요청</span>으로 받고,
+          <br />
+          결과로 <span className={`${styles.mark} ${styles.markAlt}`}>응답</span>하는
+          <br />
           백엔드 개발자 정유진입니다.
         </h1>
-
-        <p
-          style={{
-            fontSize: "1.6rem",
-            fontWeight: 500,
-            color: "#666",
-            marginBottom: "32px",
-          }}
-        >
-          기획부터 개발까지 하나의 흐름으로 이해하고 구현하는 것을 좋아합니다.
+        <p className={styles.lead}>
+          사용자를 만나 문제를 다시 정의하고, Spring 기반 API로 구현하고, 행동
+          데이터로 결과를 확인합니다. 기획부터 지표까지 하나의 흐름으로
+          책임지는 개발을 좋아합니다.
         </p>
-      </section>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "28px",
-          marginBottom: "48px",
-          fontSize: "18px",
-          lineHeight: 1.4,
-          maxWidth: "800px",
-        }}
-      >
-      <p style={{ margin: 0 }}>
-        프로젝트에서 PM과 백엔드 개발을 맡으며 
-        사용자의 문제를 정의하고 해결하는 과정을 경험했습니다. <br />
-        단순히 기능을 구현하는 것을 넘어,
-        왜 이 기능이 필요한지 고민하며 서비스를 만들어갑니다.
-      </p>
-      
-    </div>
-
-      {/* Profile */}
-      <section
-        style={{
-          display: "flex",
-          gap: "48px",
-          alignItems: "flex-start",
-          justifyContent: "center",
-        }}
-      >
-        <img
-          src="/mainImage.png"
-          alt="profile"
-          style={{
-            width: "340px",
-            height: "340px",
-            objectFit: "cover",
-          }}
-        />
-
-        <div style={{ flex: 1 }}>
-
-          {/* Keywords */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "24px",
-              marginBottom: "36px",
-              fontSize: "18px",
-            }}
-          >
-            <p style={{ margin: 0 }}>
-              현재는 AI와 생산성·교육 도메인에 관심을 가지고 있으며,<br />
-              사용자에게 실제로 도움이 되는 제품을 만드는 데 <br />
-              집중하고 있습니다.
-            </p>
-          </div>
-
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              marginBottom: "28px",
-              fontSize: "20px",
-              fontWeight: 600,
-              color: "#222",
-            }}
-          >
-            <span>👩‍💻 PM & Backend Development</span>
-            <span>🤖 AI · Education Technology</span>
-            <span>🚀 Product Thinking</span>
-          </div>
-
-          {/* Info */}
-          <div
-            style={{
-              paddingTop: "16px",
-            }}
-          >
-            <p
-              style={{
-                margin: "0 0 8px 0",
-                color: "#555",
-              }}
-            >
-              🎓 서울여자대학교 소프트웨어융합학과
-            </p>
-
-            <p
-              style={{
-                margin: "0 0 10px 0",
-                color: "#555",
-              }}
-            >
-              📧 j_yujin_swu22@naver.com
-            </p>
-
-            <div
-              style={{
-                display: "flex",
-                gap: "10px",
-                flexWrap: "wrap",
-              }}
-            >
-              <a
-                href="https://github.com/yujining3827"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={linkStyle}
-              >
-                <img src="/github.svg" style={iconStyle} />
-                GitHub
-              </a>
-
-              <a
-                href="https://velog.io/@yujindeang_/posts"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={linkStyle}
-              >
-                <img src="/velog.png" style={iconStyle} />
-                Velog
-              </a>
-
-              <a
-                href="https://www.instagram.com/dev.ing_/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={linkStyle}
-              >
-                <img src="/instagram.svg" style={iconStyle} />
-                Instagram
-              </a>
-            </div>
-          </div>
+        <div className={styles.actions}>
+          <a href="#projects" className={styles.primary}>
+            프로젝트 보기
+          </a>
+          <Link to="/blog" className={styles.secondary}>
+            아티클 읽기 →
+          </Link>
         </div>
-      </section>
-    </div>
+        <p className={styles.meta}>
+          {PROFILE.school} · {PROFILE.graduation}
+        </p>
+      </div>
+
+      <div className={styles.terminal} role="img" aria-label="정유진 프로필을 JSON 응답으로 표현한 터미널">
+        <div className={styles.bar}>
+          <span className={styles.close} />
+          <span className={styles.minimize} />
+          <span className={styles.zoom} />
+          <p className={styles.barTitle}>yujin — -zsh — 80×24</p>
+        </div>
+        <pre className={styles.screen} aria-hidden="true">
+          <code>
+            <span className={styles.line} style={next()}>
+              <Prompt /> curl -i localhost:8080/api/v1/me
+            </span>
+            <span className={styles.line} style={next()}>
+              HTTP/1.1 <span className={styles.status}>200 OK</span>
+            </span>
+            <span className={styles.line} style={next()}>
+              <span className={styles.header}>Content-Type</span>: application/json
+            </span>
+            <span className={styles.line} style={next()}>
+              <span className={styles.header}>X-Powered-By</span>: Spring Boot
+            </span>
+            <span className={styles.line} style={next()}>{" "}</span>
+            <span className={styles.line} style={next()}>{"{"}</span>
+            {RESPONSE.map(([key, value], index) => (
+              <span key={key} className={styles.line} style={next()}>
+                {"  "}
+                <span className={styles.key}>"{key}"</span>: {renderValue(value)}
+                {index < RESPONSE.length - 1 && ","}
+              </span>
+            ))}
+            <span className={styles.line} style={next()}>{"}"}</span>
+            <span className={styles.line} style={next()}>
+              <Prompt /> <span className={styles.caret} />
+            </span>
+          </code>
+        </pre>
+      </div>
+    </section>
   );
 }

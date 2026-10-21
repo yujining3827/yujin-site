@@ -1,60 +1,54 @@
-import { useParams } from "react-router-dom";
-import { getPosts } from "../data/posts";
-import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import { Link, useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+import { getPostBySlug } from "../lib/posts";
+import styles from "./BlogDetail.module.css";
 
 export default function BlogDetail() {
-  const { id } = useParams();
-  const posts = getPosts();
+  const { slug } = useParams<{ slug: string }>();
+  const post = slug ? getPostBySlug(slug) : undefined;
 
-  const post = posts.find((p) => p.id === Number(id));
-
-  if (!post) return <div>글 없음</div>;
+  if (!post) {
+    return (
+      <div className={styles.notFound}>
+        <p className={styles.notFoundCode}>404 Not Found</p>
+        <p>글을 찾을 수 없습니다.</p>
+        <Link to="/blog" className={styles.back}>
+          ← 아티클 목록으로
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px",  }}>
-        <Navbar />
-        <hr />
-        <br />
+    <article className={styles.article}>
+      <Link to="/blog" className={styles.back}>
+        ← /articles
+      </Link>
 
-        <div style={{ marginBottom: "20px" }}>
-        <Link
-            to="/"
-            style={{
-            textDecoration: "none",
-            color: "#000",
-            fontSize: "14px",
-            }}
-        >
-            ← 목록으로
-        </Link>
-        </div>
+      <header className={styles.header}>
+        <h1 className={styles.title}>{post.title}</h1>
+        <p className={styles.meta}>
+          <time dateTime={post.date}>{post.date.replaceAll("-", ".")}</time>
+          {post.tags.map((tag) => (
+            <span key={tag} className={styles.tag}>
+              #{tag}
+            </span>
+          ))}
+        </p>
+      </header>
 
-      <h1>{post.title}</h1>
-      <p style={{ color: "#888" }}>{post.date}</p>
-
-      <hr
-        style={{
-            margin: "20px 0",
-            border: "none",
-            borderTop: "1px solid #e5e5e5", // 연한 회색
-        }}
-      />
-
-      <div style={{ marginTop: "20px" }}>
-        {post.content}
+      <div className={styles.body}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
       </div>
 
-      <hr
-          style={{
-            marginTop: "100px",
-            marginBottom: "20px",
-          }}
-        />
-        
-        <Footer/>
-      
-    </div>
+      <footer className={styles.end}>
+        <span className={styles.endCode}>EOF</span>
+        <Link to="/blog" className={styles.back}>
+          다른 아티클 보기 →
+        </Link>
+      </footer>
+    </article>
   );
 }

@@ -1,26 +1,31 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import styles from "./PortfolioLayout.module.css";
+
+function useScrollOnNavigate() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      document.getElementById(hash.slice(1))?.scrollIntoView();
+      return;
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+}
 
 export default function PortfolioLayout() {
+  useScrollOnNavigate();
+
   return (
-    <div
-      style={{
-        maxWidth: "900px",
-        margin: "0 auto",
-        padding: "40px",
-      }}
-    >
-
+    <div className={styles.shell}>
       <Navbar />
-
-      <hr style={{ margin: "40px 0" }} />
-    
-      <Outlet />
-
-      <hr style={{ margin: "40px 0" }} />
-
+      <main className={styles.main}>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

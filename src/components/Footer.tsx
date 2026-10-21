@@ -1,66 +1,55 @@
+import { Link } from "react-router-dom";
+
+import { PROFILE, SOCIAL_LINKS } from "../content/profile";
+import styles from "./Footer.module.css";
+
 export default function Footer() {
-  const linkStyle = {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "6px",
-    textDecoration: "none",
-    color: "#000",
-    fontSize: "13px",
-    marginRight: "12px",
-  };
-
-  const iconStyle = {
-    width: "16px",
-    height: "16px",
-  };
-
   return (
-    <footer style={{ fontSize: "14px" }}>
-      <div style={{ marginBottom: "10px" }}>
-        
-        <a
-          href="https://github.com/yujining3827"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={linkStyle}
-        >
-          <img src="/github.svg" style={iconStyle} />
-          GitHub
-        </a>
+    <footer className={styles.footer}>
+      <div className={styles.inner}>
+        <div className={styles.cta}>
+          <p className={styles.request}>
+            <span className={styles.method}>POST</span> /contact
+          </p>
+          <p className={styles.headline}>
+            함께 풀고 싶은 문제가 있다면,
+            <br />
+            요청을 보내주세요.
+          </p>
+          <div className={styles.actions}>
+            <a href={`mailto:${PROFILE.email}`} className={styles.primary}>
+              {PROFILE.email}
+            </a>
+            <Link to="/guestbook" className={styles.secondary}>
+              방명록 남기기 →
+            </Link>
+          </div>
+        </div>
 
-        <a
-          href="https://velog.io/@yujindeang_/posts"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={linkStyle}
-        >
-          <img src="/velog.png" style={iconStyle} />
-          Velog
-        </a>
-
-        <a
-          href="https://www.instagram.com/dev.ing_/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={linkStyle}
-        >
-          <img src="/instagram.svg" style={iconStyle} />
-          Instagram
-        </a>
-
+        <div className={styles.bottom}>
+          <div className={styles.links}>
+            {SOCIAL_LINKS.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.link}
+              >
+                <img
+                  src={social.icon}
+                  alt=""
+                  className={`${styles.icon} ${social.mono ? styles.iconMono : ""}`}
+                />
+                {social.label}
+              </a>
+            ))}
+          </div>
+          <p className={styles.copyright}>
+            <span className={styles.status}>201 Created</span> © 2026 Dev.ing
+          </p>
+        </div>
       </div>
-
-      <p>
-        협업 제안 문의 :{" "}
-        <a
-          href="mailto:j_yujin_swu22@naver.com"
-          style={{ textDecoration: "none", color: "#000" }}
-        >
-          j_yujin_swu22@naver.com
-        </a>
-      </p>
-
-      <p>© 2026 Dev.ing</p>
     </footer>
   );
 }

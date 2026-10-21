@@ -1,99 +1,45 @@
 import { Link, useLocation } from "react-router-dom";
 
+import styles from "./Navbar.module.css";
+
+const NAV_LINKS = [
+  { to: "/#projects", label: "projects", match: "/projects" },
+  { to: "/blog", label: "articles", match: "/blog" },
+  { to: "/guestbook", label: "guestbook", match: "/guestbook" },
+];
+
 export default function Navbar() {
   const location = useLocation();
-  const isAbout = location.pathname === "/about";
-
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   return (
-    <header
-      style={{
-        display: "flex",
-        justifyContent: "space-between", // 좌우 분리
-        alignItems: "center",
-        marginBottom: "30px",
-      }}
-    >
-      {/* 왼쪽 (로고) */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        {/* 프로필 이미지 */}
-        <img
-          src="/profile.png"
-          alt="profile"
-          style={{
-            width: "32px",
-            height: "32px",
-            borderRadius: "50%", 
-            objectFit: "cover",
-          }}
-        />
-
-        {/* 텍스트 */}
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none",
-            color: "#000",
-          }}
-        >
-          <h2
-            style={{
-              margin: 0,
-              fontWeight: 600,
-            }}
-          >
-            Dev.ing
-          </h2>
+    <header className={styles.header}>
+      <div className={styles.inner}>
+        <Link to="/" className={styles.brand} aria-label="홈으로">
+          <img src="/profile.png" alt="" className={styles.avatar} />
+          <span className={styles.wordmark}>
+            Dev.ing<span className={styles.cursor} aria-hidden="true" />
+          </span>
         </Link>
+
+        <nav className={styles.nav}>
+          {NAV_LINKS.map((item) => {
+            const isActive =
+              location.pathname.startsWith(item.match) ||
+              (item.match === "/blog" && location.pathname.startsWith("/post"));
+
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`${styles.link} ${isActive ? styles.linkActive : ""}`}
+              >
+                <span className={styles.slash}>/</span>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
       </div>
-
-      {/* 오른쪽 (메뉴) */}
-      <nav>
-        <Link
-          to={isAbout ? "/" : "/blog"}
-          style={{
-            marginRight: "16px",
-            textDecoration: "none",
-            color: "#000",
-            fontSize: "16px",
-            fontWeight: 600,
-          }}
-        >
-          {isAbout ? "About me" : "Article"}
-        </Link>
-
-        {isAdmin ? (
-          <Link 
-            to="/write"
-            style={{
-              padding: "6px 12px",
-              border: "1px solid #ccc",
-              borderRadius: "6px",
-              textDecoration: "none",
-              color: "#000",
-              cursor: "pointer",
-            }}
-          >
-            글 작성
-          </Link>
-        ) : (
-          <button
-            onClick={() => alert("🚧 아직 개발 중인 기능입니다.")}
-            style={{
-              padding: "6px 12px",
-              border: "1px solid #ccc",
-              borderRadius: "6px",
-              background: "transparent",
-              color: "#000",
-              cursor: "pointer",
-              fontSize: "14px",
-            }}
-          >
-            구독하기
-          </button>
-        )}
-      </nav>
     </header>
   );
 }

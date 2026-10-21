@@ -1,0 +1,200 @@
+.section {
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--border);
+}
+
+.career {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.careerHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.company {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  letter-spacing: -0.02em;
+}
+
+.team {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.role {
+  margin-top: var(--space-1);
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.period {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding-top: 6px;
+}
+
+.summary {
+  margin-top: var(--space-5);
+  max-width: 640px;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: var(--space-6) 0;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.metric {
+  background: var(--surface);
+  padding: var(--space-4);
+  margin: 0;
+}
+
+.metricLabel {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.metricValue {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+}
+
+.metricDetail {
+  margin: var(--space-1) 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.highlights {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.highlights li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* --- activity log --- */
+
+.log {
+  margin-top: var(--space-7);
+}
+
+.logTitle {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-heading);
+  margin-bottom: var(--space-3);
+}
+
+.logMethod {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: var(--space-1);
+}
+
+.logList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.logItem {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.logPeriod {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding-top: 3px;
+}
+
+.logHeading {
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.logRole {
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-left: var(--space-1);
+}
+
+.logNote {
+  margin-top: 2px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+  .career {
+    padding: var(--space-5) var(--space-4);
+  }
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .metricValue {
+    font-size: 1.5rem;
+  }
+  .logItem {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}

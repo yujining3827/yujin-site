@@ -1,0 +1,25 @@
+.section {
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--border);
+}
+
+.empty {
+  color: var(--text-muted);
+  padding: var(--space-5) 0;
+}
+
+.all {
+  display: inline-block;
+  margin-top: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-heading);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 2px;
+}
+
+.all:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
