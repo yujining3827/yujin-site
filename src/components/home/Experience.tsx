@@ -18,7 +18,14 @@ export default function Experience() {
               {career.company}
               <span className={styles.team}> · {career.team}</span>
             </p>
-            <p className={styles.role}>{career.role}</p>
+            <p className={styles.role}>
+              <span className={styles.roleTitle}>{career.role}</span>
+              {career.keywords.map((keyword) => (
+                <span key={keyword} className={styles.keyword}>
+                  {keyword}
+                </span>
+              ))}
+            </p>
           </div>
           <p className={styles.period}>{career.period}</p>
         </div>
@@ -55,7 +62,7 @@ export default function Experience() {
           <span className={styles.logMethod}>GET</span> /experience/activities
         </p>
         <ol className={styles.logList}>
-          {ACTIVITY_LOG.map((entry) => (
+          {ACTIVITY_LOG.filter((entry) => !entry.hidden).map((entry) => (
             <li key={entry.title + entry.period} className={styles.logItem}>
               <span className={styles.logPeriod}>{entry.period}</span>
               <div>

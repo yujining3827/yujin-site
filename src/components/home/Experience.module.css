@@ -32,9 +32,30 @@
 }
 
 .role {
-  margin-top: var(--space-1);
-  font-size: 0.92rem;
-  color: var(--text);
+  margin-top: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.88rem;
+}
+
+/* 역할 키워드: 텍스트 선택처럼 보이는 하이라이트 */
+.roleTitle,
+.keyword {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.roleTitle {
+  background: var(--accent);
+  color: #fff;
+}
+
+.keyword {
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .period {

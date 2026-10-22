@@ -51,11 +51,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
-}
-
-.card:hover .image {
-  transform: scale(1.03);
 }
 
 /* 대표 이미지가 없는 프로젝트: 터미널 톤의 대체 커버 */
@@ -248,9 +243,42 @@
   color: var(--text-muted);
 }
 
+/* 모바일: 2열 컴팩트 카드 (표지 + 기간 + 제목 + 역할만) */
 @media (max-width: 720px) {
   .grid {
-    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  .card:hover {
+    transform: none;
+  }
+  .status {
+    top: 6px;
+    left: 6px;
+    padding: 2px 5px;
+    font-size: 0.55rem;
+  }
+  .body {
+    padding: var(--space-3);
+  }
+  .meta {
+    margin-bottom: var(--space-1);
+    font-size: 0.68rem;
+  }
+  .meta span:first-child,
+  .arrow,
+  .tagline,
+  .badge {
+    display: none;
+  }
+  .itemTitle {
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+  .footer {
+    padding-top: var(--space-2);
+  }
+  .role {
+    font-size: 0.66rem;
   }
   .moreList li {
     grid-template-columns: 1fr auto;

@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 
 import Endpoint from "../components/Endpoint";
-import { PROJECTS, STATUS_LABEL, getProjectBySlug } from "../content/projects";
+import { STATUS_LABEL, getProjectBySlug } from "../content/projects";
 import styles from "./ProjectDetail.module.css";
 
 export default function ProjectDetail() {
@@ -19,9 +19,6 @@ export default function ProjectDetail() {
       </div>
     );
   }
-
-  const index = PROJECTS.indexOf(project);
-  const nextProject = PROJECTS[(index + 1) % PROJECTS.length];
 
   return (
     <article className={styles.page}>
@@ -114,9 +111,8 @@ export default function ProjectDetail() {
         )}
       </section>
 
-      <Link to={`/projects/${nextProject.slug}`} className={styles.next}>
-        <span className={styles.nextLabel}>next →</span>
-        <span className={styles.nextTitle}>{nextProject.title}</span>
+      <Link to="/#projects" className={styles.backToList}>
+        ← 목록으로
       </Link>
     </article>
   );

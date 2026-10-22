@@ -25,6 +25,7 @@ export type Career = {
   company: string;
   team: string;
   role: string;
+  keywords: string[];
   period: string;
   summary: string;
   metrics: Metric[];
@@ -35,7 +36,8 @@ export type Career = {
 export const FEATURED_CAREER: Career = {
   company: "FYI",
   team: "멋쟁이사자처럼 해외 신사업팀",
-  role: "AI PM 인턴 · 기획 / 데이터 분석 / 백엔드 구현",
+  role: "AI PM 인턴",
+  keywords: ["기획", "데이터 분석", "백엔드 구현"],
   period: "2026.07 — 2026.08",
   summary:
     "사용자 행동 데이터를 분석해 가입 퍼널과 운영 흐름을 개선하고, 문제 발견부터 개발, 지표 확인까지 직접 이어갔습니다.",
@@ -59,6 +61,8 @@ export type LogEntry = {
   title: string;
   role: string;
   note?: string;
+  /** true면 사이트에 노출하지 않는다 */
+  hidden?: boolean;
 };
 
 export const ACTIVITY_LOG: LogEntry[] = [
@@ -67,6 +71,18 @@ export const ACTIVITY_LOG: LogEntry[] = [
     title: "UMC 10기",
     role: "서버 파트",
     note: "JWT 인증·인가, 공통 응답·예외 처리, Public/Private API 구조 적용",
+  },
+  {
+    period: "2026.02 — 2026.10",
+    title: "SWUWEB",
+    role: "서울여자대학교 소학회 4기",
+    note: "돈워리 프로젝트 프론트엔드 개발",
+  },
+  {
+    period: "2026.02 — 2026.08",
+    title: "메디럭스 (Medilux)",
+    role: "메디컬 창업동아리 25기",
+    note: "Dentruth·DDADANG 장기 프로젝트 백엔드 개발",
   },
   {
     period: "2025.01 — 2026.01",
@@ -84,10 +100,11 @@ export const ACTIVITY_LOG: LogEntry[] = [
     period: "2024.09 — 2024.12",
     title: "㈜유락",
     role: "정보보안·포렌식 인턴",
+    hidden: true,
     note: "보안 기업의 포렌식 업무 환경과 실무 프로세스 경험",
   },
   {
-    period: "2024",
+    period: "2024.09 — 2025.02",
     title: "UMC 7기",
     role: "Plan 파트",
     note: "서비스 기획 스터디, STACKPOT 프로젝트 PM",
@@ -104,5 +121,5 @@ export const STACK: StackGroup[] = [
   { key: "data_infra", items: ["MySQL", "PostgreSQL", "Redis", "AWS"] },
   { key: "product_ai", items: ["Event Tracking", "A/B Test", "Python", "GPT API"] },
   { key: "collab", items: ["React", "TypeScript", "GitHub", "Figma"] },
-  { key: "certificates", items: ["SQLD", "정보처리기사 필기"] },
+  { key: "certificates", items: ["TOEIC 820", "SQLD", "정보처리기사 필기 합격"] },
 ];
