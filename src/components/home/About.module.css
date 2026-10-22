@@ -16,14 +16,6 @@
   margin-bottom: var(--space-5);
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--post);
-  box-shadow: 0 0 0 4px var(--post-soft);
-}
-
 .title {
   font-size: clamp(2rem, 4.2vw, 2.9rem);
   line-height: 1.28;

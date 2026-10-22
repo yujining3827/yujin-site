@@ -54,7 +54,7 @@ export default function About() {
     <section className={styles.hero}>
       <div className={styles.copy}>
         <p className={styles.eyebrow}>
-          <span className={styles.dot} /> Backend Developer · AI Product
+          Backend Developer · AI Product
         </p>
         <h1 className={styles.title}>
           문제를 <span className={styles.mark}>요청</span>으로 받고,
