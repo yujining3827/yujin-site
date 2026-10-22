@@ -169,6 +169,42 @@
   color: var(--text-muted);
 }
 
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-6) auto 0;
+  padding: var(--space-2) var(--space-4);
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.toggle:hover {
+  color: var(--accent);
+}
+
+.chevron {
+  display: inline-block;
+  font-size: 1.1rem;
+  line-height: 1;
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.toggle:hover .chevron {
+  transform: rotate(90deg) translateX(2px);
+}
+
+.chevronUp,
+.toggle:hover .chevronUp {
+  transform: rotate(-90deg);
+}
+
 /* --- more --- */
 
 .more {

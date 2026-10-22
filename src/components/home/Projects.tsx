@@ -1,10 +1,17 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Endpoint from "../Endpoint";
 import { MORE_PROJECTS, PROJECTS, STATUS_LABEL } from "../../content/projects";
 import styles from "./Projects.module.css";
 
+const INITIAL_COUNT = 4;
+
 export default function Projects() {
+  const [expanded, setExpanded] = useState(false);
+  const hiddenCount = PROJECTS.length - INITIAL_COUNT;
+  const visible = expanded ? PROJECTS : PROJECTS.slice(0, INITIAL_COUNT);
+
   return (
     <section id="projects" className={styles.section}>
       <Endpoint
@@ -14,7 +21,7 @@ export default function Projects() {
       />
 
       <ol className={styles.grid}>
-        {PROJECTS.map((project, index) => (
+        {visible.map((project, index) => (
           <li key={project.slug}>
             <Link to={`/projects/${project.slug}`} className={styles.card}>
               <div className={styles.cover}>
@@ -57,6 +64,23 @@ export default function Projects() {
           </li>
         ))}
       </ol>
+
+      {hiddenCount > 0 && (
+        <button
+          type="button"
+          className={styles.toggle}
+          onClick={() => setExpanded((prev) => !prev)}
+          aria-expanded={expanded}
+        >
+          <span
+            className={`${styles.chevron} ${expanded ? styles.chevronUp : ""}`}
+            aria-hidden="true"
+          >
+            &gt;
+          </span>
+          {expanded ? "View less" : "View more"}
+        </button>
+      )}
 
       <div className={styles.more}>
         <p className={styles.moreTitle}>그 밖의 프로젝트</p>

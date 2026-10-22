@@ -16,9 +16,7 @@ export default function Navbar() {
       <div className={styles.inner}>
         <Link to="/" className={styles.brand} aria-label="홈으로">
           <img src="/profile.png" alt="" className={styles.avatar} />
-          <span className={styles.wordmark}>
-            Dev.ing<span className={styles.cursor} aria-hidden="true" />
-          </span>
+          <span className={styles.wordmark}>Dev.ing</span>
         </Link>
 
         <nav className={styles.nav}>

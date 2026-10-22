@@ -145,7 +145,7 @@
   line-height: 1.75;
   color: var(--term-text);
   white-space: pre-wrap;
-  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 .screen code {

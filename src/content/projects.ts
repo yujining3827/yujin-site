@@ -7,6 +7,8 @@ export type Project = {
   period: string;
   role: string;
   status: ProjectStatus;
+  /** true면 목록·상세 페이지 어디에도 노출하지 않는다 */
+  hidden?: boolean;
   badge?: string;
   image?: string;
   overview: string;
@@ -23,7 +25,7 @@ export const STATUS_LABEL: Record<ProjectStatus, string> = {
   done: "200 DONE",
 };
 
-export const PROJECTS: Project[] = [
+const ALL_PROJECTS: Project[] = [
   {
     slug: "today-market",
     title: "오늘 시장은 (ReadEcon)",
@@ -78,6 +80,7 @@ export const PROJECTS: Project[] = [
     period: "2026.09 — 2026.10",
     role: "기획 · IA · Full-stack",
     status: "wip",
+    image: "/swu-software-cover.webp",
     badge: "학과장 승인 · 교수 검토 완료",
     overview:
       "학사·교육 정보가 흩어져 있어 찾기 어렵고, 공지 관리도 번거롭다는 실제 이해관계자의 요구에서 시작했습니다. 정보 구조부터 다시 설계하고 관리자 기능까지 포함한 홈페이지를 구축했습니다.",
@@ -97,6 +100,7 @@ export const PROJECTS: Project[] = [
     period: "2025 · 종합설계",
     role: "기획 · 디자인 · Backend",
     status: "done",
+    hidden: true,
     badge: "ACK 2025 포스터 게재",
     overview:
       "관심 있는 뉴스만 골라 읽고 싶다는 문제에서 출발해, 수집 파이프라인과 API 서버를 연결한 뉴스 요약 서비스를 만들었습니다.",
@@ -109,13 +113,28 @@ export const PROJECTS: Project[] = [
     tech: ["Spring", "Python", "GPT API", "MySQL"],
   },
   {
+    slug: "swu-festival-2025",
+    title: "서울여대 2025 축제 사이트",
+    tagline: "실제 축제 이용자를 대상으로 운영된 서울여자대학교 축제 서비스",
+    period: "2025",
+    role: "Backend · 멋사 서울여대 운영진",
+    status: "done",
+    image: "/swu-festival-cover.webp",
+    badge: "실사용자 대상 운영",
+    overview:
+      "멋쟁이사자처럼 서울여대 운영진 프로젝트로, 2025년 서울여자대학교 축제 기간 동안 실제 이용자를 대상으로 운영된 축제 사이트입니다. 백엔드 개발을 맡아 실제 사용자가 있는 서비스를 구현하고 운영했습니다.",
+    contribution: ["축제 사이트 백엔드 개발", "축제 기간 실서비스 운영"],
+    result: ["실제 축제 이용자를 대상으로 서비스 운영"],
+    tech: [],
+  },
+  {
     slug: "donworry",
     title: "돈워리",
     tagline: "구매 직전의 소비 결정을 다시 생각하게 돕는 소비 절제 가계부",
-    period: "2026.04 — 2026.08",
+    period: "2026.05 — 2026.10",
     role: "SWUWEB 프로젝트",
     status: "done",
-    image: "/donworry.png",
+    image: "/donworry-cover.webp",
     overview:
       "돈을 모으고 싶지만 관리가 어려운 2030을 위해, 소비를 기록하는 데서 끝내지 않고 구매 직전에 한 번 더 생각하도록 돕는 흐름을 기획했습니다.",
     contribution: [
@@ -134,6 +153,7 @@ export const PROJECTS: Project[] = [
     period: "2026",
     role: "Backend",
     status: "done",
+    image: "/dentruth-cover.webp",
     overview:
       "치과 상담 전후로 흩어지는 일정과 정보를 한곳에 정리해, 사용자가 병원에 전달할 내용을 미리 준비할 수 있도록 돕는 서비스입니다.",
     contribution: [
@@ -152,7 +172,7 @@ export const PROJECTS: Project[] = [
     period: "2026.05 — 진행 중",
     role: "Backend",
     status: "wip",
-    image: "/ddadang.png",
+    image: "/ddadang-cover.webp",
     overview:
       "혈당 관리는 한 번의 측정보다 꾸준한 기록과 관리가 중요하다는 문제에서 출발한 메디컬 창업동아리 장기 프로젝트입니다. 사용자가 혈당 관리를 지속할 수 있도록 돕는 서비스의 백엔드를 맡고 있습니다.",
     contribution: ["백엔드 API 개발", "DB 설계"],
@@ -161,6 +181,8 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export const PROJECTS = ALL_PROJECTS.filter((project) => !project.hidden);
+
 export type MinorProject = {
   title: string;
   note: string;
@@ -168,7 +190,6 @@ export type MinorProject = {
 };
 
 export const MORE_PROJECTS: MinorProject[] = [
-  { title: "서울여대 2025 축제 사이트", note: "실사용자 대상 운영 서비스 · Backend", year: "2025" },
   { title: "STACKPOT", note: "UMC 협업 올인원 플랫폼 · PM", year: "2024" },
   { title: "Packingmate", note: "SW GURU2 Android 앱 · 팀 우수상", year: "2025" },
   { title: "GURU1 Python·HTML", note: "과정 수료 · 개인상", year: "2025" },

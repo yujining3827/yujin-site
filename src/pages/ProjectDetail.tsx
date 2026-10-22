@@ -92,13 +92,17 @@ export default function ProjectDetail() {
         <h2 className={styles.sectionTitle}>
           <span>04</span> Stack
         </h2>
-        <div className={styles.techList}>
-          {project.tech.map((tech) => (
-            <span key={tech} className={styles.techTag}>
-              {tech}
-            </span>
-          ))}
-        </div>
+        {project.tech.length > 0 ? (
+          <div className={styles.techList}>
+            {project.tech.map((tech) => (
+              <span key={tech} className={styles.techTag}>
+                {tech}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className={styles.description}>정리 중입니다.</p>
+        )}
         {project.links && project.links.length > 0 && (
           <div className={styles.links}>
             {project.links.map((link) => (
