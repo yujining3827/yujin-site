@@ -25,14 +25,6 @@
   text-decoration: none;
 }
 
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border);
-}
-
 .wordmark {
   font-family: var(--font-mono);
   font-weight: 700;
@@ -72,9 +64,6 @@
 @media (max-width: 560px) {
   .inner {
     padding: var(--space-3) var(--space-4);
-  }
-  .avatar {
-    display: none;
   }
   .nav {
     gap: 0;
