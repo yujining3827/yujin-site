@@ -10,7 +10,7 @@ const RESPONSE: [string, Value][] = [
   ["name", PROFILE.name],
   ["role", PROFILE.roles],
   ["stack", ["Java", "Spring Boot", "JPA", "MySQL"]],
-  ["approach", "문제 정의 → API 구현 → 지표 확인"],
+  ["approach", "기획 → 설계·구현 → 배포 → 지표 확인"],
   ["recent_impact", "가입 CAC −45% @FYI"],
   ["award", "ACK 2026 정총연합회 회장상"],
 ];
@@ -57,16 +57,17 @@ export default function About() {
           Backend Developer · AI Product
         </p>
         <h1 className={styles.title}>
-          문제를 <span className={styles.mark}>요청</span>으로 받고,
+          <span className={styles.mark}>기획부터 배포까지</span>,
           <br />
-          결과로 <span className={`${styles.mark} ${styles.markAlt}`}>응답</span>하는
+          <span className={`${styles.mark} ${styles.markAlt}`}>끝까지</span> 밀고 가는
           <br />
           백엔드 개발자 정유진입니다.
         </h1>
         <p className={styles.lead}>
-          사용자를 만나 문제를 다시 정의하고, Spring 기반 API로 구현하고, 행동
-          데이터로 결과를 확인합니다. 기획부터 지표까지 하나의 흐름으로
-          책임지는 개발을 좋아합니다.
+          사용자 인터뷰로 문제를 다시 정의하고, API와 데이터 구조를 설계해
+          구현한 뒤, 지표로 결과를 확인합니다. 해커톤 피벗부터 학회 수상,
+          인턴십의 가입 CAC 45% 개선까지, 시작한 일은 결과가 나올 때까지
+          끌고 갑니다.
         </p>
         <div className={styles.actions}>
           <a href="#projects" className={styles.primary}>
