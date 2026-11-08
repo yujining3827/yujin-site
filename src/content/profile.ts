@@ -82,7 +82,7 @@ export const ACTIVITY_LOG: LogEntry[] = [
     period: "2026.02 — 2026.08",
     title: "메디럭스 (Medilux)",
     role: "메디컬 창업동아리 25기",
-    note: "Dentruth·DDADANG 장기 프로젝트 백엔드 개발",
+    note: "Dentruth·DDADANG 장기 프로젝트 백엔드 개발, DDADANG 최우수상",
   },
   {
     period: "2025.01 — 2026.01",
