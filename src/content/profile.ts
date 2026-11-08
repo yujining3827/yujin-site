@@ -12,7 +12,7 @@ export const PROFILE = {
 export const SOCIAL_LINKS = [
   { href: "https://github.com/yujining3827", icon: "/github.svg", label: "GitHub", mono: true },
   { href: "https://velog.io/@yujindeang_/posts", icon: "/velog.png", label: "Velog", mono: false },
-  { href: "https://www.instagram.com/dev.ing_/", icon: "/instagram.svg", label: "Instagram", mono: false },
+  { href: "https://www.instagram.com/greedy_uuu/", icon: "/instagram.svg", label: "Instagram", mono: false },
 ];
 
 export type Metric = {
