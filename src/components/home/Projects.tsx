@@ -95,11 +95,6 @@ export default function Projects() {
                     <TechList tech={project.tech} limit={featured ? undefined : 3} />
                   </div>
 
-                  {featured && (
-                    <span className={styles.cta}>
-                      자세히 보기 <span aria-hidden="true">→</span>
-                    </span>
-                  )}
                 </div>
               </Link>
             </li>

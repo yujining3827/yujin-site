@@ -5,22 +5,9 @@
 
 /* --- featured career --- */
 
+/* 박스 없이 hero처럼 영역으로만 구분한다 */
 .career {
   position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  overflow: hidden;
-}
-
-/* 카드 상단의 보라 → 핑크 라인 */
-.career::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--post));
 }
 
 .careerHead {
@@ -429,9 +416,6 @@
 }
 
 @media (max-width: 720px) {
-  .career {
-    padding: var(--space-5) var(--space-4);
-  }
   .logo {
     width: 44px;
     height: 44px;

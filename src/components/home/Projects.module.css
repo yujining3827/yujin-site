@@ -197,16 +197,6 @@
   position: relative;
 }
 
-/* 대표작 위쪽의 보라 → 핑크 라인 */
-.featured::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 3px;
-  z-index: 1;
-  background: linear-gradient(90deg, var(--accent), var(--post));
-}
-
 /* 표지가 잘리지 않도록 은은한 배경 위에 16:9 그대로 띄운다 */
 .featured .cover {
   flex: 0 0 56%;
@@ -302,25 +292,6 @@
   color: var(--post);
 }
 
-.cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  align-self: flex-start;
-  margin-top: var(--space-5);
-  padding: 8px 16px;
-  border-radius: var(--radius);
-  background: var(--text-heading);
-  color: var(--bg);
-  font-size: 0.85rem;
-  font-weight: 700;
-  transition: background 0.2s ease;
-}
-
-.featured:hover .cta {
-  background: var(--accent);
-}
-
 .toggle {
   display: flex;
   align-items: center;
@@ -400,6 +371,33 @@
   color: var(--text-muted);
 }
 
+/* 데스크톱: 대표작은 카드 박스 없이 hero처럼 표지 | 설명 두 영역으로 */
+@media (min-width: 721px) {
+  .featuredItem {
+    margin-bottom: var(--space-6);
+  }
+  .featured,
+  .featured:hover {
+    align-items: center;
+    gap: var(--space-7);
+    background: none;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    transform: none;
+    box-shadow: none;
+  }
+  .featured .cover {
+    border: none;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 24px 50px -28px rgba(13, 13, 16, 0.45);
+  }
+  .featured .body {
+    padding: 0;
+  }
+}
+
 @media (max-width: 860px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -423,9 +421,6 @@
   }
   .featured {
     flex-direction: column;
-  }
-  .featured::before {
-    display: none;
   }
   .featured .cover {
     flex: none;
@@ -477,8 +472,7 @@
   .badge,
   .featured .badge,
   .points,
-  .tech,
-  .cta {
+  .tech {
     display: none;
   }
   .itemTitle {

@@ -70,7 +70,7 @@ export default function About() {
         </p>
         <div className={styles.actions}>
           <a href="#projects" className={styles.primary}>
-            프로젝트 보기
+            프로젝트 보러가기 <span className={styles.primaryArrow} aria-hidden="true">→</span>
           </a>
           {/* 아티클 읽기 버튼은 글이 쌓일 때까지 잠시 숨김:
           <Link to="/blog" className={styles.secondary}>아티클 읽기 →</Link> */}

@@ -47,14 +47,8 @@
   color: var(--text-heading);
 }
 
-/* 요청과 응답 요약 사이를 잇는 점선 */
-.rule {
-  flex: 1;
-  min-width: var(--space-5);
-  border-top: 1px dashed var(--border-strong);
-}
-
 .meta {
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -83,7 +77,7 @@ h1.title {
 
 .description {
   margin-top: var(--space-3);
-  max-width: 560px;
+  max-width: 760px;
   color: var(--text-muted);
 }
 

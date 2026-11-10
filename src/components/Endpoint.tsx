@@ -35,13 +35,10 @@ export default function Endpoint({
           <span className={styles.path}>{path}</span>
         </p>
         {meta && (
-          <>
-            <span className={styles.rule} aria-hidden="true" />
-            <span className={styles.meta}>
-              <span className={styles.metaDot} aria-hidden="true" />
-              {meta}
-            </span>
-          </>
+          <span className={styles.meta}>
+            <span className={styles.metaDot} aria-hidden="true" />
+            {meta}
+          </span>
         )}
       </div>
       <Heading className={styles.title}>{title}</Heading>

@@ -1,4 +1,5 @@
 import Endpoint from "../Endpoint";
+import LogoStrip from "./LogoStrip";
 import { STACK } from "../../content/profile";
 import styles from "./TechStack.module.css";
 
@@ -12,8 +13,10 @@ export default function TechStack() {
         path="/stack"
         meta={`200 OK · ${total} fields`}
         title="실제 프로젝트에서 써본 기술"
-        description="응답 스키마처럼, 손에 익은 순서대로 정리했습니다."
+        description="손에 익은 순서대로 정리했습니다."
       />
+
+      <LogoStrip />
 
       <div className={styles.editor}>
         <div className={styles.bar}>

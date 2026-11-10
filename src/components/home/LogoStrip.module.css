@@ -1,0 +1,95 @@
+/* 공식 로고가 옆으로 천천히 흐르는 띠. 양 끝은 흐리게 */
+.strip {
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+  padding: var(--space-3) 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: flow 40s linear infinite;
+}
+
+@keyframes flow {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-6);
+  color: var(--brand);
+}
+
+.label {
+  color: var(--text-heading);
+}
+
+.icon {
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* 로고가 없는 기술(AWS)은 굵은 이름으로 로고 자리를 채운다 */
+.wordmark {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 34px;
+}
+
+.label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.item:has(.wordmark) .label {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .item {
+    padding: 0 var(--space-4);
+    gap: var(--space-2);
+  }
+  .icon {
+    width: 26px;
+    height: 26px;
+  }
+  .wordmark {
+    font-size: 1.15rem;
+    line-height: 26px;
+  }
+  .label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+    row-gap: var(--space-4);
+  }
+  .track > li:nth-child(n + 14) {
+    display: none;
+  }
+  .strip {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
