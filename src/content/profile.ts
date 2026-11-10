@@ -19,6 +19,13 @@ export type Metric = {
   value: string;
   label: string;
   detail: string;
+  /** 개선 전후 값. 있으면 막대로 비교해 보여준다 */
+  compare?: { before: number; after: number; lowerIsBetter?: boolean };
+};
+
+export type Highlight = {
+  step: string;
+  text: string;
 };
 
 export type Career = {
@@ -29,7 +36,7 @@ export type Career = {
   period: string;
   summary: string;
   metrics: Metric[];
-  highlights: string[];
+  highlights: Highlight[];
   tech: string[];
 };
 
@@ -42,16 +49,30 @@ export const FEATURED_CAREER: Career = {
   summary:
     "사용자 행동 데이터를 분석해 가입 퍼널과 운영 흐름을 개선하고, 문제 발견부터 개발, 지표 확인까지 직접 이어갔습니다.",
   metrics: [
-    { value: "−45%", label: "가입 CAC", detail: "1,746원 → 955원" },
-    { value: "10.7%", label: "가입 전환율", detail: "8.9%에서 상승" },
-    { value: "+38", label: "신규 이벤트", detail: "171종 점검 · 17,387건 수집" },
-    { value: "20", label: "API", detail: "커밋 189 · 마이그레이션 5" },
+    {
+      value: "−45%",
+      label: "가입 CAC",
+      detail: "1,746원 → 955원",
+      compare: { before: 1746, after: 955, lowerIsBetter: true },
+    },
+    {
+      value: "10.7%",
+      label: "가입 전환율",
+      detail: "8.9%에서 상승",
+      compare: { before: 8.9, after: 10.7 },
+    },
   ],
   highlights: [
-    "사용자 행동과 유입 퍼널을 점검해 이탈 구간과 계측 공백을 발견",
-    "사용자 정보 회수 흐름을 랜딩 → API → DB → 이메일 발송 → 관리자 화면까지 연결",
-    "페이지네이션 정렬 기준, 스크롤 도달 이벤트 누락, 빈 값 덮어쓰기 문제를 수정",
-    "A/B 실험용 사용자 식별·기능 분기와 운영 자동화, AI 추천 기능 구현",
+    { step: "발견", text: "사용자 행동과 유입 퍼널을 점검해 이탈 구간과 계측 공백을 발견" },
+    {
+      step: "연결",
+      text: "사용자 정보 회수 흐름을 랜딩 → API → DB → 이메일 발송 → 관리자 화면까지 연결",
+    },
+    {
+      step: "수정",
+      text: "페이지네이션 정렬 기준, 스크롤 도달 이벤트 누락, 빈 값 덮어쓰기 문제를 수정",
+    },
+    { step: "실험", text: "A/B 실험용 사용자 식별·기능 분기와 운영 자동화, AI 추천 기능 구현" },
   ],
   tech: ["Spring", "Java", "SQL", "Event Tracking", "A/B Test", "Python", "GPT API"],
 };

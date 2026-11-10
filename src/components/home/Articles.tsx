@@ -13,7 +13,9 @@ export default function Articles() {
   return (
     <section id="articles" className={styles.section}>
       <Endpoint
+        index="03"
         path={`/articles?limit=${LATEST_COUNT}`}
+        meta={`200 OK · ${Math.min(posts.length, LATEST_COUNT)} of ${posts.length}`}
         title="만들면서 배운 것을 기록합니다"
         description="문제를 풀며 고민한 과정과 기술적인 선택의 이유를 아티클로 정리합니다."
       />

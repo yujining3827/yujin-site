@@ -1,12 +1,26 @@
 .endpoint {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-7);
+}
+
+.requestRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
 }
 
 .request {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   gap: var(--space-3);
-  margin-bottom: var(--space-3);
   padding: 4px 12px 4px 4px;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -33,8 +47,33 @@
   color: var(--text-heading);
 }
 
+/* 요청과 응답 요약 사이를 잇는 점선 */
+.rule {
+  flex: 1;
+  min-width: var(--space-5);
+  border-top: 1px dashed var(--border-strong);
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.metaDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--term-green);
+  box-shadow: 0 0 0 3px rgba(40, 200, 64, 0.18);
+}
+
 .title {
-  font-size: 2rem;
+  font-size: 2.1rem;
   line-height: 1.25;
 }
 
@@ -49,10 +88,16 @@ h1.title {
 }
 
 @media (max-width: 720px) {
+  .endpoint {
+    margin-bottom: var(--space-6);
+  }
   .title {
     font-size: 1.6rem;
   }
   h1.title {
     font-size: 2rem;
+  }
+  .meta {
+    display: none;
   }
 }

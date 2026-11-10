@@ -15,7 +15,9 @@ export default function Projects() {
   return (
     <section id="projects" className={styles.section}>
       <Endpoint
+        index="02"
         path="/projects"
+        meta={`200 OK · ${PROJECTS.length} items`}
         title="사용자를 만나고, 방향을 바꾸고, 끝까지 구현한 프로젝트"
         description="처음 아이디어에 머무르지 않고 사용자 조사로 문제를 다시 정의한 과정을 함께 기록했습니다."
       />
