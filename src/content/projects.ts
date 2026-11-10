@@ -11,6 +11,8 @@ export type Project = {
   hidden?: boolean;
   badge?: string;
   image?: string;
+  /** 대표작 카드(데스크톱) 전용 6:5 표지. 표지 칸에 여백·잘림 없이 맞춘 이미지 */
+  featuredImage?: string;
   overview: string;
   contribution: string[];
   result: string[];
@@ -34,7 +36,8 @@ const ALL_PROJECTS: Project[] = [
     role: "PM · Backend",
     status: "wip",
     badge: "ACK 2026 정총연합회 회장상",
-    image: "/todaymarket.png",
+    image: "/todaymarket-cover.webp",
+    featuredImage: "/todaymarket-featured.webp",
     overview:
       "경제 뉴스를 읽어도 시장이 왜 움직였는지는 알기 어렵다는 문제에서 출발한 졸업 프로젝트입니다. 처음 생각한 서비스에 고정하지 않고 경제 입문자 5명을 인터뷰해 문제를 다시 정의했고, 뉴스를 나열하는 대신 시장 흐름의 원인과 결과를 설명하는 방향으로 서비스를 조정했습니다.",
     contribution: [

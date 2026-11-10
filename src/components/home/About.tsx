@@ -1,5 +1,4 @@
 import type { CSSProperties } from "react";
-import { Link } from "react-router-dom";
 
 import { PROFILE } from "../../content/profile";
 import styles from "./About.module.css";
@@ -73,9 +72,8 @@ export default function About() {
           <a href="#projects" className={styles.primary}>
             프로젝트 보기
           </a>
-          <Link to="/blog" className={styles.secondary}>
-            아티클 읽기 →
-          </Link>
+          {/* 아티클 읽기 버튼은 글이 쌓일 때까지 잠시 숨김:
+          <Link to="/blog" className={styles.secondary}>아티클 읽기 →</Link> */}
         </div>
         <p className={styles.meta}>
           {PROFILE.school} · {PROFILE.graduation}

@@ -2,10 +2,43 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Endpoint from "../Endpoint";
-import { MORE_PROJECTS, PROJECTS, STATUS_LABEL } from "../../content/projects";
+import { MORE_PROJECTS, PROJECTS, STATUS_LABEL, type Project } from "../../content/projects";
 import styles from "./Projects.module.css";
 
+/** 대표작 1개 + 그 아래 3열 한 줄. 나머지는 "View more"로 펼친다 */
 const INITIAL_COUNT = 4;
+
+function Cover({ project, featured }: { project: Project; featured?: boolean }) {
+  const wide = featured ? project.featuredImage : undefined;
+  return (
+    <div className={`${styles.cover} ${wide ? styles.hasWide : ""}`}>
+      {wide && <img src={wide} alt="" className={styles.wideImage} loading="lazy" />}
+      {project.image ? (
+        <img src={project.image} alt="" className={styles.image} loading="lazy" />
+      ) : (
+        <div className={styles.placeholder} aria-hidden="true">
+          <span className={styles.placeholderPath}>GET /projects/{project.slug}</span>
+          <span className={styles.placeholderTitle}>{project.title}</span>
+        </div>
+      )}
+      <span className={`${styles.status} ${project.status === "wip" ? styles.statusWip : ""}`}>
+        {STATUS_LABEL[project.status]}
+      </span>
+    </div>
+  );
+}
+
+function TechList({ tech, limit }: { tech: string[]; limit?: number }) {
+  if (tech.length === 0) return null;
+  const items = limit ? tech.slice(0, limit) : tech;
+  return (
+    <ul className={styles.tech}>
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
 
 export default function Projects() {
   const [expanded, setExpanded] = useState(false);
@@ -23,48 +56,55 @@ export default function Projects() {
       />
 
       <ol className={styles.grid}>
-        {visible.map((project, index) => (
-          <li key={project.slug}>
-            <Link to={`/projects/${project.slug}`} className={styles.card}>
-              <div className={styles.cover}>
-                {project.image ? (
-                  <img src={project.image} alt="" className={styles.image} loading="lazy" />
-                ) : (
-                  <div className={styles.placeholder} aria-hidden="true">
-                    <span className={styles.placeholderPath}>
-                      GET /projects/{project.slug}
+        {visible.map((project, index) => {
+          const featured = index === 0;
+          const number = String(index + 1).padStart(2, "0");
+
+          return (
+            <li key={project.slug} className={featured ? styles.featuredItem : undefined}>
+              <Link
+                to={`/projects/${project.slug}`}
+                className={`${styles.card} ${featured ? styles.featured : ""}`}
+              >
+                <Cover project={project} featured={featured} />
+
+                <div className={styles.body}>
+                  <p className={styles.meta}>
+                    <span className={styles.number}>{number}</span>
+                    <span>{project.period}</span>
+                  </p>
+                  <h3 className={styles.itemTitle}>
+                    {project.title}
+                    <span className={styles.arrow} aria-hidden="true">
+                      →
                     </span>
-                    <span className={styles.placeholderTitle}>{project.title}</span>
+                  </h3>
+                  <p className={styles.tagline}>{project.tagline}</p>
+
+                  {featured && (
+                    <ul className={styles.points}>
+                      {project.contribution.slice(0, 3).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <div className={styles.footer}>
+                    {project.badge && <p className={styles.badge}>★ {project.badge}</p>}
+                    <p className={styles.role}>{project.role}</p>
+                    <TechList tech={project.tech} limit={featured ? undefined : 3} />
                   </div>
-                )}
-                <span
-                  className={`${styles.status} ${project.status === "wip" ? styles.statusWip : ""}`}
-                >
-                  {STATUS_LABEL[project.status]}
-                </span>
-              </div>
 
-              <div className={styles.body}>
-                <p className={styles.meta}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <span>{project.period}</span>
-                </p>
-                <h3 className={styles.itemTitle}>
-                  {project.title}
-                  <span className={styles.arrow} aria-hidden="true">
-                    →
-                  </span>
-                </h3>
-                <p className={styles.tagline}>{project.tagline}</p>
-
-                <div className={styles.footer}>
-                  {project.badge && <p className={styles.badge}>★ {project.badge}</p>}
-                  <p className={styles.role}>{project.role}</p>
+                  {featured && (
+                    <span className={styles.cta}>
+                      자세히 보기 <span aria-hidden="true">→</span>
+                    </span>
+                  )}
                 </div>
-              </div>
-            </Link>
-          </li>
-        ))}
+              </Link>
+            </li>
+          );
+        })}
       </ol>
 
       {hiddenCount > 0 && (

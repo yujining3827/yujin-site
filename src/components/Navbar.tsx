@@ -2,11 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 
 import styles from "./Navbar.module.css";
 
+// hidden: true인 링크는 메뉴에 보이지 않는다 (아티클은 글이 쌓일 때까지 잠시 숨김)
 const NAV_LINKS = [
   { to: "/#projects", label: "projects", match: "/projects" },
-  { to: "/blog", label: "articles", match: "/blog" },
+  { to: "/blog", label: "articles", match: "/blog", hidden: true },
   { to: "/guestbook", label: "guestbook", match: "/guestbook" },
-];
+].filter((item) => !item.hidden);
 
 export default function Navbar() {
   const location = useLocation();

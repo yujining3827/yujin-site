@@ -8,7 +8,7 @@ export default function TechStack() {
   return (
     <section id="stack" className={styles.section}>
       <Endpoint
-        index="04"
+        index="03"
         path="/stack"
         meta={`200 OK · ${total} fields`}
         title="실제 프로젝트에서 써본 기술"

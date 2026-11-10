@@ -8,12 +8,17 @@
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-5);
 }
 
 .grid > li {
   display: flex;
+}
+
+/* 대표작은 한 줄 전체를 쓴다 */
+.featuredItem {
+  grid-column: 1 / -1;
 }
 
 .card {
@@ -37,7 +42,6 @@
   transform: translateY(-4px);
   box-shadow: 0 18px 40px -24px var(--accent-border);
 }
-
 
 .cover {
   position: relative;
@@ -85,9 +89,10 @@
 .status {
   position: absolute;
   top: var(--space-3);
-  left: var(--space-3);
+  right: var(--space-3);
+  z-index: 1;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   padding: 3px 8px;
@@ -111,13 +116,14 @@
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   margin-bottom: var(--space-2);
 }
 
 .itemTitle {
-  font-size: 1.2rem;
+  font-size: 1.08rem;
+  line-height: 1.35;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -143,7 +149,8 @@
 .tagline {
   margin-top: var(--space-2);
   color: var(--text);
-  font-size: 0.93rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
 }
 
 .footer {
@@ -154,15 +161,164 @@
 }
 
 .badge {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--text-heading);
 }
 
 .role {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech li {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--bg-elevated);
+  color: var(--text);
+}
+
+/* --- featured: 가로로 넓은 대표작 카드 --- */
+
+.featured {
+  flex-direction: row;
+  position: relative;
+}
+
+/* 대표작 위쪽의 보라 → 핑크 라인 */
+.featured::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--accent), var(--post));
+}
+
+/* 표지가 잘리지 않도록 은은한 배경 위에 16:9 그대로 띄운다 */
+.featured .cover {
+  flex: 0 0 56%;
+  aspect-ratio: auto;
+  display: flex;
+  align-items: center;
+  padding: var(--space-7) var(--space-6);
+  border-bottom: none;
+  border-right: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 15% 20%, var(--accent-soft), transparent 55%),
+    radial-gradient(circle at 90% 85%, var(--post-soft), transparent 50%),
+    var(--bg-elevated);
+}
+
+.featured .image {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px -20px rgba(13, 13, 16, 0.35);
+}
+
+/* 대표작 전용 6:5 표지: 칸 비율과 이미지 비율을 맞춰 여백·잘림이 없다 */
+.featured .hasWide {
+  aspect-ratio: 6 / 5;
+  padding: 0;
+  background: #0d1b4f;
+}
+
+.featured .hasWide .image {
+  display: none;
+}
+
+.wideImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.featured .body {
+  padding: var(--space-6);
+}
+
+.featured .number {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.featured .itemTitle {
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+
+.featured .tagline {
+  font-size: 0.98rem;
+  color: var(--text-heading);
+}
+
+.points {
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.points li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.86rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.points li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.featured .badge {
+  display: inline-flex;
+  justify-self: start;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: var(--post-soft);
+  color: var(--post);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: var(--space-5);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  background: var(--text-heading);
+  color: var(--bg);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.featured:hover .cta {
+  background: var(--accent);
 }
 
 .toggle {
@@ -244,17 +400,67 @@
   color: var(--text-muted);
 }
 
-/* 모바일: 2열 컴팩트 카드 (표지 + 기간 + 제목 + 역할만) */
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .featured .cover {
+    flex-basis: 50%;
+    padding: var(--space-5);
+  }
+  .featured .itemTitle {
+    font-size: 1.3rem;
+  }
+}
+
+/* 모바일: 2열 컴팩트 카드 (표지 + 기간 + 제목 + 역할만), 대표작도 일반 카드로 */
 @media (max-width: 720px) {
   .grid {
     gap: var(--space-3);
+  }
+  .featuredItem {
+    grid-column: auto;
+  }
+  .featured {
+    flex-direction: column;
+  }
+  .featured::before {
+    display: none;
+  }
+  .featured .cover {
+    flex: none;
+    display: block;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    background: var(--bg-elevated);
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .featured .image,
+  .featured .hasWide .image {
+    display: block;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .wideImage {
+    display: none;
+  }
+  .featured .body {
+    padding: var(--space-3);
+  }
+  .featured .itemTitle {
+    font-size: 0.84rem;
+  }
+  .featured .tagline {
+    font-size: inherit;
   }
   .card:hover {
     transform: none;
   }
   .status {
     top: 6px;
-    left: 6px;
+    right: 6px;
     padding: 2px 5px;
     font-size: 0.55rem;
   }
@@ -268,7 +474,11 @@
   .meta span:first-child,
   .arrow,
   .tagline,
-  .badge {
+  .badge,
+  .featured .badge,
+  .points,
+  .tech,
+  .cta {
     display: none;
   }
   .itemTitle {
