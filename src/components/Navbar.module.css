@@ -73,3 +73,17 @@
     font-size: 0.78rem;
   }
 }
+
+/* 메뉴가 3개일 때 작은 폰에서도 한 줄에 들어가게 */
+@media (max-width: 400px) {
+  .inner {
+    gap: var(--space-2);
+  }
+  .wordmark {
+    font-size: 0.92rem;
+  }
+  .link {
+    padding: 6px 4px;
+    font-size: 0.72rem;
+  }
+}
