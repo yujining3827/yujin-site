@@ -4,8 +4,22 @@ export type Post = {
   date: string;
   description: string;
   tags: string[];
+  /** 글이 속한 시리즈. 여러 개 지정할 수 있다 (SERIES 참고) */
+  series: string[];
   content: string;
 };
+
+/** 시리즈 이름 목록. 글 frontmatter의 series에 이 중에서 골라 적는다 */
+export const SERIES = ["릴스정보", "바이브 코딩", "기술공부", "프로젝트"] as const;
+
+// frontmatter의 "[a, b, c]" 형태 값을 배열로 바꾼다
+function parseList(value: string | undefined): string[] {
+  return (value ?? "")
+    .replace(/^\[|\]$/g, "")
+    .split(",")
+    .map((item) => item.trim().replace(/^["']|["']$/g, ""))
+    .filter(Boolean);
+}
 
 function excerpt(content: string): string {
   const paragraph = content
@@ -32,7 +46,7 @@ function parsePost(path: string, raw: string): Post {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!match) {
     const content = raw.trim();
-    return { slug, title: slug, date: "", description: excerpt(content), tags: [], content };
+    return { slug, title: slug, date: "", description: excerpt(content), tags: [], series: [], content };
   }
 
   const [, frontmatter, body] = match;
@@ -50,11 +64,8 @@ function parsePost(path: string, raw: string): Post {
     title: fields.title ?? slug,
     date: fields.date ?? "",
     description: fields.description ?? excerpt(content),
-    tags: (fields.tags ?? "")
-      .replace(/^\[|\]$/g, "")
-      .split(",")
-      .map((tag) => tag.trim().replace(/^["']|["']$/g, ""))
-      .filter(Boolean),
+    tags: parseList(fields.tags),
+    series: parseList(fields.series),
     content,
   };
 }
