@@ -2,11 +2,13 @@ import {
   Children,
   cloneElement,
   isValidElement,
+  useEffect,
   useRef,
   useState,
   type ReactElement,
   type ReactNode,
 } from "react";
+import { createPortal } from "react-dom";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -60,6 +62,54 @@ function Quote({ children }: { children?: ReactNode }) {
   return <blockquote>{children}</blockquote>;
 }
 
+// 본문 사진: 폰에서는 화면 캡처가 작게 보여서, 누르면 화면 가득 크게 띄운다
+function ZoomImage({ src, alt }: { src?: string; alt?: string }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <>
+      <button
+        type="button"
+        className={styles.zoomTrigger}
+        onClick={() => setOpen(true)}
+        aria-label={`${alt || "사진"} 크게 보기`}
+      >
+        <img src={src} alt={alt ?? ""} loading="lazy" />
+      </button>
+      {open &&
+        createPortal(
+          <div
+            className={styles.lightbox}
+            role="dialog"
+            aria-modal="true"
+            aria-label={alt || "사진 크게 보기"}
+            onClick={() => setOpen(false)}
+          >
+            <p className={styles.lightboxHint}>화면을 누르면 닫혀요</p>
+            <img className={styles.lightboxImage} src={src} alt={alt ?? ""} />
+          </div>,
+          document.body,
+        )}
+    </>
+  );
+}
+
 export default function BlogDetail() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPostBySlug(slug) : undefined;
@@ -104,6 +154,7 @@ export default function BlogDetail() {
           components={{
             pre: ({ children }) => <CodeBlock>{children}</CodeBlock>,
             blockquote: ({ children }) => <Quote>{children}</Quote>,
+            img: ({ src, alt }) => <ZoomImage src={src} alt={alt} />,
           }}
         >
           {post.content}
