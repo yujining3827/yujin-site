@@ -6,6 +6,8 @@ export type Post = {
   tags: string[];
   /** 글이 속한 시리즈. 여러 개 지정할 수 있다 (SERIES 참고) */
   series: string[];
+  /** true면 작성 중인 글. 로컬 개발 서버에서만 보이고 배포본에서는 빠진다 */
+  draft: boolean;
   content: string;
 };
 
@@ -46,7 +48,7 @@ function parsePost(path: string, raw: string): Post {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!match) {
     const content = raw.trim();
-    return { slug, title: slug, date: "", description: excerpt(content), tags: [], series: [], content };
+    return { slug, title: slug, date: "", description: excerpt(content), tags: [], series: [], draft: false, content };
   }
 
   const [, frontmatter, body] = match;
@@ -66,12 +68,14 @@ function parsePost(path: string, raw: string): Post {
     description: fields.description ?? excerpt(content),
     tags: parseList(fields.tags),
     series: parseList(fields.series),
+    draft: fields.draft === "true",
     content,
   };
 }
 
 const allPosts: Post[] = Object.entries(rawFiles)
   .map(([path, raw]) => parsePost(path, raw))
+  .filter((post) => import.meta.env.DEV || !post.draft)
   .sort((a, b) => b.date.localeCompare(a.date));
 
 export function getAllPosts(): Post[] {
