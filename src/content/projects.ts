@@ -18,6 +18,8 @@ export type Project = {
   result: string[];
   tech: string[];
   links?: { label: string; href: string }[];
+  /** 상세 페이지 하단에 순서대로 쭉 보여줄 발표 자료 슬라이드 */
+  deck?: { title: string; slides: string[]; note?: string };
 };
 
 export const STATUS_LABEL: Record<ProjectStatus, string> = {
@@ -26,6 +28,14 @@ export const STATUS_LABEL: Record<ProjectStatus, string> = {
   wip: "202 IN PROGRESS",
   done: "200 DONE",
 };
+
+/** public/projects/{slug}/{prefix}-01.webp … 형태의 슬라이드 경로 목록 */
+function slidePaths(slug: string, prefix: string, count: number): string[] {
+  return Array.from(
+    { length: count },
+    (_, i) => `/projects/${slug}/${prefix}-${String(i + 1).padStart(2, "0")}.webp`,
+  );
+}
 
 const ALL_PROJECTS: Project[] = [
   {
@@ -51,6 +61,7 @@ const ALL_PROJECTS: Project[] = [
       "사용자 조사 → 문제 재정의 → 구현 → 논문화까지 하나의 흐름으로 완주",
     ],
     tech: ["Spring Boot", "React", "OpenAI API", "Figma"],
+    deck: { title: "발표 자료", slides: slidePaths("today-market", "deck", 29) },
   },
   {
     slug: "moca",
@@ -62,7 +73,7 @@ const ALL_PROJECTS: Project[] = [
     badge: "멋사 중앙해커톤 247팀 중 상위 3%",
     image: "/moca.png",
     overview:
-      "카공족 문제를 해결하려는 서비스로 시작했지만, 사용자 조사와 시장 분석을 통해 카페 운영자의 본질적인 문제는 고객 관리보다 운영 의사결정에 있다는 점을 발견했습니다. 이후 데이터 기반 의사결정을 돕는 AI 경영 Agent로 방향을 전환했습니다.",
+      "카공족 문제를 해결하려는 서비스로 시작했지만, 사용자 조사와 시장 분석을 통해 카페 운영자의 본질적인 문제는 고객 관리보다 운영 의사결정에 있다는 점을 발견했습니다. 이후 데이터 기반 의사결정을 돕는 AI 경영 Agent로 방향을 전환했습니다. 공릉동 개인 카페 사장님 인터뷰에서 1인 카페의 가장 큰 부담이 SNS 마케팅이라는 점을 확인하고, 지금은 소비자 취향 데이터로 카페별 콘텐츠를 진단하고 제안하는 데이터 기반 마케팅 솔루션으로 다시 방향을 잡았습니다.",
     contribution: [
       "카공족 서비스에서 카페 운영자용 AI Agent로 서비스 방향 조정",
       "API·데이터 모델링, 예약·사용자 데이터 기능 구현",
@@ -75,6 +86,11 @@ const ALL_PROJECTS: Project[] = [
     ],
     tech: ["Spring Boot", "Python", "JWT", "MySQL", "OpenAI"],
     links: [{ label: "GitHub", href: "https://github.com/SustainValley" }],
+    deck: {
+      title: "발표 자료",
+      note: "카공족 서비스 → 카페 운영자용 AI 경영 Agent → 소비자 취향 기반 카페 마케팅 솔루션으로 피벗한 뒤, 2026 SWU-SI AWARD에서 발표한 자료입니다.",
+      slides: slidePaths("moca", "deck", 17),
+    },
   },
   {
     slug: "swu-software",
@@ -182,6 +198,7 @@ const ALL_PROJECTS: Project[] = [
     contribution: ["백엔드 API 개발", "DB 설계"],
     result: ["메디럭스 25기 장기 프로젝트 최우수상 수상"],
     tech: ["Spring Boot", "MySQL"],
+    deck: { title: "IR Pitch Deck", slides: slidePaths("ddadang", "ir", 20) },
   },
 ];
 

@@ -111,6 +111,29 @@ export default function ProjectDetail() {
         )}
       </section>
 
+      {project.deck && (
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>
+            <span>05</span> {project.deck.title}
+          </h2>
+          {project.deck.note && <p className={styles.deckNote}>{project.deck.note}</p>}
+          <div className={styles.deck}>
+            {project.deck.slides.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt={`${project.title} ${project.deck!.title} ${i + 1}페이지`}
+                className={styles.slide}
+                loading={i < 2 ? "eager" : "lazy"}
+                decoding="async"
+                width={1600}
+                height={900}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
       <Link to="/#projects" className={styles.backToList}>
         ← 목록으로
       </Link>
