@@ -66,7 +66,7 @@ const ALL_PROJECTS: Project[] = [
   {
     slug: "moca",
     title: "MOCA",
-    tagline: "카페 운영자가 운영 데이터로 판단하도록 돕는 AI 경영 Agent",
+    tagline: "소비자 취향 데이터로 1인 카페의 SNS 마케팅을 돕는 데이터 기반 마케팅 솔루션",
     period: "2025 — 진행 중",
     role: "PM · Backend · UI",
     status: "wip",
